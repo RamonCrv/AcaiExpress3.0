@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btCadastrar"
+            android:layout_width="115dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="340dp"
+            android:background="@drawable/btn1"
+            android:text="Cadastrar"
+            android:textAllCaps="false"
+            android:textColor="#66f9B0"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3" />
+
+        <Button
+            android:id="@+id/btLogar"
+            android:layout_width="115dp"
+            android:layout_height="48dp"
+            android:background="@drawable/btn1"
+            android:text="Entrar"
+            android:textAllCaps="false"
+            android:textColor="#66f9B0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.499" />
+
+        <EditText
+            android:id="@+id/editEmail"
+            android:layout_width="271dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="104dp"
+            android:layout_marginTop="123dp"
+            android:layout_marginEnd="94dp"
+            android:background="@drawable/texts"
+            android:drawableLeft="@drawable/icon_savel"
+            android:ems="10"
+            android:gravity="center|left"
+            android:hint=" Email:"
+            android:inputType="textEmailAddress"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.586"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.146" />
+
+        <EditText
+            android:id="@+id/editSenha"
+            android:layout_width="271dp"
+            android:layout_height="46dp"
+            android:layout_marginEnd="94dp"
+            android:background="@drawable/texts"
+            android:drawableLeft="@drawable/icon_usar"
+            android:ems="10"
+            android:hint=" Senha:"
+
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toTopOf="@+id/btLogar"
+            app:layout_constraintEnd_toEndOf="@+id/editEmail"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/editEmail"
+            app:layout_constraintTop_toBottomOf="@+id/editEmail"
+            app:layout_constraintVertical_bias="0.301" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
