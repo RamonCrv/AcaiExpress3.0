@@ -66,11 +66,13 @@ public class Dados extends AppCompatActivity {
         String preco = preso.getText().toString().trim();
         if (!TextUtils.isEmpty(nomePonto)||!TextUtils.isEmpty(preco)){
             String id = databaseDoc.push().getKey();
+
             Ponto ponto = new Ponto();
             ponto.setNome(nPonto.getText().toString());
             ponto.setPreso(preso.getText().toString());
+            ponto.setID(user.getEmail());
             user = FirebaseAuth.getInstance().getCurrentUser();
-            databaseDoc.child(id).setValue(ponto);
+            databaseDoc.child(ponto.getID()).setValue(ponto);
 
             alert("Salvo");
         }else{

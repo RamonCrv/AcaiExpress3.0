@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
               @Override
               public void onComplete(Task<AuthResult> task) {
                   if (task.isSuccessful()){
-                      Intent i =new Intent(MainActivity.this, mapa.class);
+                      Intent i =new Intent(MainActivity.this, Dados.class);
                       startActivity(i);
                       alert("Logou");
                   }else{
