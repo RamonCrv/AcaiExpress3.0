@@ -8,6 +8,15 @@ public class Ponto {
     private String preso;
     private String cordx;
     private String cordY;
+    private String aberto;
+
+    public String getAberto() {
+        return aberto;
+    }
+
+    public void setAberto(String aberto) {
+        this.aberto = aberto;
+    }
 
     public String getCordx() {
         return cordx;

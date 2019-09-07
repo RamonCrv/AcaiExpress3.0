@@ -6,20 +6,48 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.Dados">
 
-    <EditText
-        android:id="@+id/editNponto"
+    <Button
+        android:id="@+id/btSalvar"
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:background="@drawable/texts"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Nome"
-        android:inputType="textPersonName"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="162dp"
+        android:layout_marginEnd="161dp"
+        android:background="@drawable/btn1"
+        android:text="Salvar e Atualizar"
+        android:textAllCaps="false"
+        android:textColor="#66f9B0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.521"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.603" />
+
+    <Button
+        android:id="@+id/veri"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn1"
+        android:text="verificar se a geristro"
+        android:textAllCaps="false"
+        android:textColor="#66f9B0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
+
+    <CheckBox
+        android:id="@+id/abertoBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aberto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.119" />
+        app:layout_constraintVertical_bias="0.413" />
 
     <EditText
         android:id="@+id/editPreso"
@@ -34,24 +62,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.258" />
+        app:layout_constraintVertical_bias="0.354" />
 
-    <Button
-        android:id="@+id/btSalvar"
+    <EditText
+        android:id="@+id/editNponto"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="162dp"
-        android:layout_marginEnd="161dp"
-        android:background="@drawable/btn1"
-        android:text="Salvar"
-        android:textAllCaps="false"
-        android:textColor="#66f9B0"
+        android:layout_height="35dp"
+        android:background="@drawable/texts"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Nome"
+        android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.277" />
 
     <TextView
         android:id="@+id/txnome"
@@ -71,17 +97,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btSalvar" />
 
-    <Button
-        android:id="@+id/veri"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="verificar se a geristro"
-        android:background="@drawable/btn1"
-        android:textAllCaps="false"
-        android:textColor="#66f9B0"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="400dp"
+        android:layout_height="180dp"
+        android:layout_marginStart="141dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="142dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toTopOf="@+id/editNponto"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.418" />
+        app:layout_constraintVertical_bias="0.25"
+         />
+
+    <Button
+        android:id="@+id/ediimg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="168dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="683dp"
+        android:text="edite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
