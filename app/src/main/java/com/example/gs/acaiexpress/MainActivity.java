@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.gs.acaiexpress.ui.main.Dados;
@@ -18,8 +19,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import com.example.gs.acaiexpress.ui.main.MainFragment;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
+import com.google.firebase.firestore.auth.User;
+import com.google.firebase.firestore.local.Persistence;
 
 public class MainActivity extends AppCompatActivity {
+
     private Button btnRegistrar;
     private Button btnLogar;
     private EditText editEmail;
@@ -56,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         btnLogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String email = editEmail.getText().toString().trim();
                 String senha = editSenha.getText().toString().trim();
 
@@ -75,11 +81,19 @@ public class MainActivity extends AppCompatActivity {
                 mAuth.createUserWithEmailAndPassword(email,senha).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete( Task<AuthResult> task) {
+
                         if(task.isSuccessful()){
+
+
+
+                            mAuth.getCurrentUser();
+
                             alert("Cadastrado com sucesso ");
+
                             Intent i =new Intent(MainActivity.this, Dados.class);
                             startActivity(i);
                         }else{
+
                             alert("Email já Cadastrado");
                         }
                     }
@@ -99,9 +113,11 @@ public class MainActivity extends AppCompatActivity {
               @Override
               public void onComplete(Task<AuthResult> task) {
                   if (task.isSuccessful()){
+
                       Intent i =new Intent(MainActivity.this, Dados.class);
                       startActivity(i);
                       alert("Logou");
+
                   }else{
                       alert("Email ou senha incorreto");
                   }
@@ -122,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
     private  void alert (String msg){
         final  Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.CENTER_VERTICAL, 0,0);
+
         toast.setDuration(Toast.LENGTH_SHORT);
         Toast.makeText(MainActivity.this,msg,Toast.LENGTH_SHORT).show();
 

@@ -73,12 +73,14 @@ public class Dados extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dados);
+
         databaseDoc = FirebaseDatabase.getInstance().getReference("Ponto");
 
         inicializarComponentes();
 
         eventoClicks();
         auth = FirebaseAuth.getInstance();
+
         BuscarDoc();
         BuscarImg();
 
