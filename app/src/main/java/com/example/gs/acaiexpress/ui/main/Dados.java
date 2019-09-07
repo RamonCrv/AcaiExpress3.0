@@ -29,7 +29,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.OptionalPendingResult;
+
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -52,8 +52,7 @@ import com.google.firebase.storage.UploadTask;
 
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.UUID;
+
 
 public class Dados extends AppCompatActivity {
 
@@ -119,19 +118,13 @@ public class Dados extends AppCompatActivity {
             }
         });
 
-       btout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                SignOut();
-
-            }
-        });
 
         ediimge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 trocouImagem = true;
+
                 selectfoto();
             }
         });
@@ -150,11 +143,11 @@ public class Dados extends AppCompatActivity {
         ediimge = (Button) findViewById(R.id.ediimg);
         mImagPhoto = (ImageView) findViewById(R.id.imageView);
         abertoCheck = (CheckBox) findViewById(R.id.abertoBox);
-        btout= (Button) findViewById(R.id.bt_logout);
+
 
     }
 
-    //ACHO Q SALVA  A IMAGEM E TEM COISA DO GOOGLE
+    //ACHO Q SALVA  A IMAGEM
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -168,11 +161,6 @@ public class Dados extends AppCompatActivity {
 
             }
 
-        }
-        //ALGO DO GOOGLE
-        if(requestCode==SING_IN_CODE ){
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            handleSingInResult(result);
         }
 
     }
@@ -203,8 +191,10 @@ public class Dados extends AppCompatActivity {
 
             user = FirebaseAuth.getInstance().getCurrentUser();
             databaseDoc.child(ponto.getID()).setValue(ponto);
+
             if (trocouImagem){
                 saveUserInFirebase();
+                alert("Trocou imagem = true");
             }
 
             alert("Salvo");
@@ -277,14 +267,13 @@ public class Dados extends AppCompatActivity {
                     }else{
                         nPonto.setText(dataSnapshot.child(userID).child("nome").getValue().toString());
                         preso.setText(dataSnapshot.child(userID).child("preso").getValue().toString());
-                       // alert(dataSnapshot.child(userID).child("aberto").getValue().toString());
-                        if (dataSnapshot.child(userID).child("aberto").getValue().toString() == "Aberto"){
+                       String situacao = dataSnapshot.child(userID).child("aberto").getValue().toString();
+                        if (situacao.equals("Aberto")){
                             abertoCheck.setChecked(true);
-                            alert("entrou");
-                            
-                            
+
                         }else{
                             abertoCheck.setChecked(false);
+
                         }
                     }
                 }else {
@@ -301,48 +290,6 @@ public class Dados extends AppCompatActivity {
     private  void alert (String msg){
         Toast.makeText(Dados.this,msg,Toast.LENGTH_SHORT).show();
     }
-
-
-    //GOOGLE THINGS THAT WE ARE NOT USING YET
-    public  void SignOut() {
-        Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
-            @Override
-            public void onResult(@NonNull Status status) {
-                if (status.isSuccess()) {
-                    goLoInScrean();
-                } else {
-                    Toast.makeText(getApplicationContext(), R.string.not_close_session, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    private void handleSingInResult(GoogleSignInResult result) {
-        if (result.isSuccess()){
-            goMainScrean();
-        }else {
-            Toast.makeText(this, R.string.not_log_in, Toast.LENGTH_SHORT).show();
-        }
-
-    }
-
-    private void goMainScrean() {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NEW_TASK );
-        startActivity(intent);
-    }
-
-    private void goLoInScrean() {
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
-
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
-    }
-
-
 
 }
 

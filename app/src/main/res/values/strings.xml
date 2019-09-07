@@ -3,4 +3,5 @@
     <string name="title_activity_mapa">Map</string>
     <string name="not_log_in">não pode iniciar</string>
     <string name="not_close_session">so lamneto</string>
+    <string name="not_revoke">nao se pode revocar aceso</string>
 </resources>
