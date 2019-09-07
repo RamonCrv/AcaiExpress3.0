@@ -23,6 +23,15 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.gs.acaiexpress.MainActivity;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.OptionalPendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
@@ -55,18 +64,18 @@ public class Dados extends AppCompatActivity {
     public EditText preso;
     private TextView vnome;
     private TextView vpreco;
+    private Button btout;
     private FirebaseUser user;
     private ImageView mImagPhoto;
     private  FirebaseAuth auth;
     private Uri mUri;
     private CheckBox abertoCheck;
+    private boolean trocouImagem = false;
     DatabaseReference databaseDoc;
     DatabaseReference databaseDoc2;
     String url;
-
-
-
-
+    public static final int SING_IN_CODE = 777;
+    private GoogleApiClient googleApiClient;
 
 
     @Override
@@ -74,11 +83,14 @@ public class Dados extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dados);
 
+
+        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+
         databaseDoc = FirebaseDatabase.getInstance().getReference("Ponto");
 
         inicializarComponentes();
-
         eventoClicks();
+
         auth = FirebaseAuth.getInstance();
 
         BuscarDoc();
@@ -86,11 +98,13 @@ public class Dados extends AppCompatActivity {
 
     }
 
+    //AÇÕES DO BOTÕES
     private void eventoClicks() {
         verif.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                BuscarDoc();
+
             }
         });
         btnSalvar.setOnClickListener(new View.OnClickListener() {
@@ -99,12 +113,32 @@ public class Dados extends AppCompatActivity {
                 String nomePonto = nPonto.getText().toString().trim();
                 String preco = preso.getText().toString().trim();
                 AddDoc();
+                trocouImagem = false;
+
 
             }
         });
+
+       btout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                SignOut();
+
+            }
+        });
+
+        ediimge.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                trocouImagem = true;
+                selectfoto();
+            }
+        });
+
     }
 
-
+    //INICIA COMPONENTES
     private void inicializarComponentes() {
         FirebaseApp.initializeApp(Dados.this);
         verif = (Button) findViewById(R.id.veri);
@@ -116,15 +150,11 @@ public class Dados extends AppCompatActivity {
         ediimge = (Button) findViewById(R.id.ediimg);
         mImagPhoto = (ImageView) findViewById(R.id.imageView);
         abertoCheck = (CheckBox) findViewById(R.id.abertoBox);
+        btout= (Button) findViewById(R.id.bt_logout);
 
-        ediimge.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectfoto();
-            }
-        });
     }
 
+    //ACHO Q SALVA  A IMAGEM E TEM COISA DO GOOGLE
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -134,29 +164,32 @@ public class Dados extends AppCompatActivity {
             try {
                 bitmap =  MediaStore.Images.Media.getBitmap(getContentResolver(),mUri);
                 mImagPhoto.setImageDrawable(new BitmapDrawable(bitmap));
-               // ediimge.setAlpha(0);
-
             } catch (IOException e) {
 
             }
 
         }
+        //ALGO DO GOOGLE
+        if(requestCode==SING_IN_CODE ){
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            handleSingInResult(result);
+        }
 
     }
 
+    //ESCOLHER FOTO NO CELULAR
     private void selectfoto(){
             Intent intent = new Intent(Intent.ACTION_PICK);
             intent.setType("image/*");
             startActivityForResult(intent,0);
 
-        }
+    }
 
+    //ADICIONAR DOC NO BANCO
     public void AddDoc(){
         String nomePonto = nPonto.getText().toString().trim();
         String preco = preso.getText().toString().trim();
         if (!TextUtils.isEmpty(nomePonto)||!TextUtils.isEmpty(preco)){
-            String id = databaseDoc.push().getKey();
-
             Ponto ponto = new Ponto();
 
             ponto.setNome(nPonto.getText().toString());
@@ -170,7 +203,10 @@ public class Dados extends AppCompatActivity {
 
             user = FirebaseAuth.getInstance().getCurrentUser();
             databaseDoc.child(ponto.getID()).setValue(ponto);
+            if (trocouImagem){
                 saveUserInFirebase();
+            }
+
             alert("Salvo");
 
         }else{
@@ -179,9 +215,10 @@ public class Dados extends AppCompatActivity {
 
     }
 
+    //SALVA A IMAGEM NO STORAGE COM O ID DO USUARIO
     private void saveUserInFirebase() {
-        String fileEmail = auth.getCurrentUser().getUid();
-        final StorageReference ref = FirebaseStorage.getInstance().getReference().child("/images/"+fileEmail);
+        String userID = auth.getCurrentUser().getUid();
+        final StorageReference ref = FirebaseStorage.getInstance().getReference().child("/images/"+userID);
         ref.putFile(mUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -204,31 +241,28 @@ public class Dados extends AppCompatActivity {
 
     }
 
+    //FUNÇÃO QUE ACHA A IMAGEM NO STORAGE E EXECUTA O GLIDE
     public void BuscarImg(){
-        //databaseDoc2 = FirebaseDatabase.getInstance().getReference();
         final String userID = auth.getCurrentUser().getUid();
         final StorageReference ref = FirebaseStorage.getInstance().getReference().child("/images/").child(userID);
 
         ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-
                url = uri.toString();
-                alert(url);
                glide(url,mImagPhoto);
             }
 
         });
 
-
-
     }
 
-public void glide(String url,ImageView imagem){
+    //FUNÇÃO QUE BAIXA A IMAGEM E SALVA NO PONTO
+    public void glide(String url,ImageView imagem){
     Glide.with(this).load(url).into(imagem);
-}
+    }
 
-
+    //RESGATA  DOCUMENTO NO DOC
     public void BuscarDoc(){
         databaseDoc2 = FirebaseDatabase.getInstance().getReference();
         final String userID = auth.getCurrentUser().getUid();
@@ -243,8 +277,10 @@ public void glide(String url,ImageView imagem){
                     }else{
                         nPonto.setText(dataSnapshot.child(userID).child("nome").getValue().toString());
                         preso.setText(dataSnapshot.child(userID).child("preso").getValue().toString());
+                       // alert(dataSnapshot.child(userID).child("aberto").getValue().toString());
                         if (dataSnapshot.child(userID).child("aberto").getValue().toString() == "Aberto"){
                             abertoCheck.setChecked(true);
+                            alert("entrou");
                             
                             
                         }else{
@@ -258,24 +294,62 @@ public void glide(String url,ImageView imagem){
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
-
         });
-
-
-
     }
 
+    //MOSTRA MSG
     private  void alert (String msg){
         Toast.makeText(Dados.this,msg,Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+
+    //GOOGLE THINGS THAT WE ARE NOT USING YET
+    public  void SignOut() {
+        Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
+            @Override
+            public void onResult(@NonNull Status status) {
+                if (status.isSuccess()) {
+                    goLoInScrean();
+                } else {
+                    Toast.makeText(getApplicationContext(), R.string.not_close_session, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void handleSingInResult(GoogleSignInResult result) {
+        if (result.isSuccess()){
+            goMainScrean();
+        }else {
+            Toast.makeText(this, R.string.not_log_in, Toast.LENGTH_SHORT).show();
+        }
 
     }
 
+    private void goMainScrean() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |Intent.FLAG_ACTIVITY_CLEAR_TASK |Intent.FLAG_ACTIVITY_NEW_TASK );
+        startActivity(intent);
+    }
+
+    private void goLoInScrean() {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
+
+
+
 }
+
+
+
+
+
 
 
 

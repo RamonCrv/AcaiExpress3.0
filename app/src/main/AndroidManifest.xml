@@ -25,7 +25,9 @@
         -->
         <activity
             android:name=".mapa"
-            android:label="@string/title_activity_mapa"></activity>
+            android:label="@string/title_activity_mapa">
+
+        </activity>
 
         <activity android:name=".ui.main.Dados" />
         <activity android:name=".MainActivity">

@@ -8,24 +8,26 @@
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <Button
             android:id="@+id/btCadastrar"
-            android:layout_width="115dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="340dp"
-            android:background="@drawable/btn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btntras"
             android:text="Cadastrar"
             android:textAllCaps="false"
             android:textColor="#66f9B0"
+            android:textSize="18sp"
             android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/editEmail"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.947"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.3" />
+            app:layout_constraintVertical_bias="0.516" />
 
         <Button
             android:id="@+id/btLogar"
@@ -37,17 +39,15 @@
             android:textColor="#66f9B0"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.499" />
+            app:layout_constraintVertical_bias="0.345" />
 
         <EditText
             android:id="@+id/editEmail"
             android:layout_width="271dp"
             android:layout_height="46dp"
             android:layout_marginStart="104dp"
-            android:layout_marginTop="123dp"
             android:layout_marginEnd="94dp"
             android:background="@drawable/texts"
             android:drawableLeft="@drawable/icon_savel"
@@ -60,7 +60,7 @@
             app:layout_constraintHorizontal_bias="0.586"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.146" />
+            app:layout_constraintVertical_bias="0.106" />
 
         <EditText
             android:id="@+id/editSenha"
@@ -71,14 +71,34 @@
             android:drawableLeft="@drawable/icon_usar"
             android:ems="10"
             android:hint=" Senha:"
-
             android:inputType="textPassword"
             app:layout_constraintBottom_toTopOf="@+id/btLogar"
             app:layout_constraintEnd_toEndOf="@+id/editEmail"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/editEmail"
             app:layout_constraintTop_toBottomOf="@+id/editEmail"
-            app:layout_constraintVertical_bias="0.301" />
+            app:layout_constraintVertical_bias="0.317" />
+        <LinearLayout android:layout_height="0dp"
+            android:layout_width="0dp"
+            tools:ignore="MissingConstraints">
+
+        </LinearLayout>
+            android:layout_width=""
+            android:layout_height=""
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/bt_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.619"
+            tools:ignore="MissingConstraints">
+
+        </com.google.android.gms.common.SignInButton>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
