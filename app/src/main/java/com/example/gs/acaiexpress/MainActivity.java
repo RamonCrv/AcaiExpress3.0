@@ -9,8 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.example.gs.acaiexpress.ui.main.Dados;
-import com.google.android.gms.common.SignInButton;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -18,14 +16,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.example.gs.acaiexpress.ui.main.MainFragment;
 public class MainActivity extends AppCompatActivity  {
 
-    private SignInButton SignIn;
-    private GoogleApiClient googleApiClient;
+
     private Button btnRegistrar;
     private Button btnLogar;
     private EditText editEmail;
     private EditText editSenha;
     private FirebaseAuth mAuth;
-    public static final int SING_IN_CODE = 777;
+
 
 
     protected void onStart() {

@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.gs.acaiexpress.MainActivity;
+import com.example.gs.acaiexpress.Um;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -81,6 +82,8 @@ public class Dados extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dados);
+        Intent b =new Intent(Dados.this, Um.class);
+        startActivity(b);
 
 
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
@@ -99,13 +102,7 @@ public class Dados extends AppCompatActivity {
 
     //AÇÕES DO BOTÕES
     private void eventoClicks() {
-        verif.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               BuscarDoc();
 
-            }
-        });
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -134,7 +131,7 @@ public class Dados extends AppCompatActivity {
     //INICIA COMPONENTES
     private void inicializarComponentes() {
         FirebaseApp.initializeApp(Dados.this);
-        verif = (Button) findViewById(R.id.veri);
+
         vnome = (TextView) findViewById(R.id.txnome);
         vpreco = (TextView) findViewById(R.id.txpreco);
         nPonto = (EditText) findViewById(R.id.editNponto);
