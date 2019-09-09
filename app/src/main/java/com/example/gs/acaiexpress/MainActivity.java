@@ -1,4 +1,5 @@
 package com.example.gs.acaiexpress;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -65,12 +66,17 @@ public class MainActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
 
+
                 String email = editEmail.getText().toString().trim();
                 String senha = editSenha.getText().toString().trim();
                 login(email, senha);
+
             }
         });
     }
+
+
+
 
     //CRIAR USUARIO TRADICIONAL
     private void criarUser(String email, String senha){

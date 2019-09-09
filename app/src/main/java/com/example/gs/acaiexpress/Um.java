@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.ProgressBar;
+
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gs.acaiexpress.ui.main.Dados;
@@ -14,6 +16,7 @@ public class Um extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_um);
+        caregando();
         startt();
                 progressBar.setVisibility(View.VISIBLE);
 
@@ -27,6 +30,14 @@ public class Um extends AppCompatActivity {
                     }
                 },3000);
             }
+
+    private void caregando() {
+        progressBar.setVisibility(View.GONE);
+        AlertDialog.Builder megaBox = new AlertDialog.Builder(this);
+        megaBox.setTitle("Entrando");
+        megaBox.setMessage("Caregando...");
+        megaBox.show();
+    }
             private void startt(){
                 this.progressBar = findViewById(R.id.progressBar);
             }

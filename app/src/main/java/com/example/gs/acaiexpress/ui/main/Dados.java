@@ -2,6 +2,7 @@ package com.example.gs.acaiexpress.ui.main;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -82,7 +83,7 @@ public class Dados extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dados);
-        Intent b =new Intent(Dados.this, Um.class);
+        Intent b = new Intent(Dados.this, Um.class);
         startActivity(b);
 
 
@@ -91,6 +92,7 @@ public class Dados extends AppCompatActivity {
         databaseDoc = FirebaseDatabase.getInstance().getReference("Ponto");
 
         inicializarComponentes();
+
         eventoClicks();
 
         auth = FirebaseAuth.getInstance();
