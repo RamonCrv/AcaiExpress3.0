@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity  {
         inicializarComponentes();
         eventoClicks();
         mAuth = FirebaseAuth.getInstance();
-
-
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.container, MainFragment.newInstance()).commitNow();
         }

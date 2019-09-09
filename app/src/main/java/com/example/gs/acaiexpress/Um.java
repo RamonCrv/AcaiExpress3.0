@@ -12,6 +12,7 @@ import com.example.gs.acaiexpress.ui.main.Dados;
 
 public class Um extends AppCompatActivity {
     private ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,20 +24,21 @@ public class Um extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+
                         progressBar.setVisibility(View.GONE);
-                        // Intent i = new Intent(Um.this, Dados.class);
+
+                       //  Intent i = new Intent(Um.this,MainActivity.class);
                        //  startActivity(i);
                        finish();
                     }
-                },3000);
+                },2000);
             }
 
     private void caregando() {
-
         AlertDialog.Builder megaBox = new AlertDialog.Builder(this);
         megaBox.setTitle("Entrando");
         megaBox.setMessage("Caregando...");
-        megaBox.show();
+
     }
             private void startt(){
                 this.progressBar = findViewById(R.id.progressBar);

@@ -30,9 +30,10 @@
         android:layout_marginTop="100dp"
         android:layout_marginEnd="10dp"
         android:background="@drawable/btntras"
-        android:text="edite"
+        android:drawableLeft="@drawable/ic_action_edite"
+        android:text="EDITE"
         android:textAllCaps="false"
-        android:textColor="#66f9B0"
+        android:textColor="#993399"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
@@ -85,17 +86,17 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="410dp"
-        android:layout_height="184dp"
+        android:layout_width="430dp"
+        android:layout_height="240dp"
         android:layout_marginStart="141dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="50dp"
         android:layout_marginEnd="142dp"
+        android:layout_marginBottom="492dp"
         android:background="@drawable/caixatext"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/txnome"
