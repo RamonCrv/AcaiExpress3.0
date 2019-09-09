@@ -20,13 +20,10 @@ public class Um extends AppCompatActivity {
         caregando();
         startt();
                 progressBar.setVisibility(View.VISIBLE);
-
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-
                         progressBar.setVisibility(View.GONE);
-
                        //  Intent i = new Intent(Um.this,MainActivity.class);
                        //  startActivity(i);
                        finish();
