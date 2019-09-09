@@ -75,8 +75,7 @@ public class Dados extends AppCompatActivity {
     DatabaseReference databaseDoc;
     DatabaseReference databaseDoc2;
     String url;
-    public static final int SING_IN_CODE = 777;
-    private GoogleApiClient googleApiClient;
+
 
 
     @Override
@@ -85,26 +84,16 @@ public class Dados extends AppCompatActivity {
         setContentView(R.layout.activity_dados);
         Intent b = new Intent(Dados.this, Um.class);
         startActivity(b);
-
-
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-
         databaseDoc = FirebaseDatabase.getInstance().getReference("Ponto");
-
         inicializarComponentes();
-
         eventoClicks();
-
         auth = FirebaseAuth.getInstance();
-
         BuscarDoc();
         BuscarImg();
-
     }
-
     //AÇÕES DO BOTÕES
     private void eventoClicks() {
-
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,28 +101,19 @@ public class Dados extends AppCompatActivity {
                 String preco = preso.getText().toString().trim();
                 AddDoc();
                 trocouImagem = false;
-
-
             }
         });
-
-
-
         ediimge.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 trocouImagem = true;
-
                 selectfoto();
             }
         });
-
     }
-
     //INICIA COMPONENTES
     private void inicializarComponentes() {
         FirebaseApp.initializeApp(Dados.this);
-
         vnome = (TextView) findViewById(R.id.txnome);
         vpreco = (TextView) findViewById(R.id.txpreco);
         nPonto = (EditText) findViewById(R.id.editNponto);
@@ -142,10 +122,7 @@ public class Dados extends AppCompatActivity {
         ediimge = (Button) findViewById(R.id.ediimg);
         mImagPhoto = (ImageView) findViewById(R.id.imageView);
         abertoCheck = (CheckBox) findViewById(R.id.abertoBox);
-
-
     }
-
     //ACHO Q SALVA  A IMAGEM
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -157,28 +134,21 @@ public class Dados extends AppCompatActivity {
                 bitmap =  MediaStore.Images.Media.getBitmap(getContentResolver(),mUri);
                 mImagPhoto.setImageDrawable(new BitmapDrawable(bitmap));
             } catch (IOException e) {
-
             }
-
         }
-
     }
-
     //ESCOLHER FOTO NO CELULAR
     private void selectfoto(){
             Intent intent = new Intent(Intent.ACTION_PICK);
             intent.setType("image/*");
             startActivityForResult(intent,0);
-
     }
-
     //ADICIONAR DOC NO BANCO
     public void AddDoc(){
         String nomePonto = nPonto.getText().toString().trim();
         String preco = preso.getText().toString().trim();
         if (!TextUtils.isEmpty(nomePonto)||!TextUtils.isEmpty(preco)){
             Ponto ponto = new Ponto();
-
             ponto.setNome(nPonto.getText().toString());
             ponto.setPreso(preso.getText().toString());
             ponto.setID(auth.getCurrentUser().getUid());
@@ -187,23 +157,17 @@ public class Dados extends AppCompatActivity {
             }else{
                 ponto.setAberto("Fechado");
             }
-
             user = FirebaseAuth.getInstance().getCurrentUser();
             databaseDoc.child(ponto.getID()).setValue(ponto);
-
             if (trocouImagem){
                 saveUserInFirebase();
                 alert("Trocou imagem = true");
             }
-
             alert("Salvo");
-
         }else{
             alert("Erro");
         }
-
     }
-
     //SALVA A IMAGEM NO STORAGE COM O ID DO USUARIO
     private void saveUserInFirebase() {
         String userID = auth.getCurrentUser().getUid();
@@ -215,7 +179,6 @@ public class Dados extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
                         Log.i("teste",uri.toString());
-                        
                     }
                 });
             }
@@ -225,16 +188,11 @@ public class Dados extends AppCompatActivity {
                 Log.e("test", e.getMessage(), e);
             }
         });
-
-
-
     }
-
     //FUNÇÃO QUE ACHA A IMAGEM NO STORAGE E EXECUTA O GLIDE
     public void BuscarImg(){
         final String userID = auth.getCurrentUser().getUid();
         final StorageReference ref = FirebaseStorage.getInstance().getReference().child("/images/").child(userID);
-
         ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -243,14 +201,11 @@ public class Dados extends AppCompatActivity {
             }
 
         });
-
     }
-
     //FUNÇÃO QUE BAIXA A IMAGEM E SALVA NO PONTO
     public void glide(String url,ImageView imagem){
     Glide.with(this).load(url).into(imagem);
     }
-
     //RESGATA  DOCUMENTO NO DOC
     public void BuscarDoc(){
         databaseDoc2 = FirebaseDatabase.getInstance().getReference();
@@ -258,7 +213,6 @@ public class Dados extends AppCompatActivity {
         databaseDoc2.child("Ponto").orderByChild("id").equalTo(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 if(dataSnapshot.exists()){
                    String contAcha = dataSnapshot.child(userID).child("id").getValue().toString();
                     if(contAcha == null){
@@ -269,10 +223,8 @@ public class Dados extends AppCompatActivity {
                        String situacao = dataSnapshot.child(userID).child("aberto").getValue().toString();
                         if (situacao.equals("Aberto")){
                             abertoCheck.setChecked(true);
-
                         }else{
                             abertoCheck.setChecked(false);
-
                         }
                     }
                 }else {
@@ -284,20 +236,8 @@ public class Dados extends AppCompatActivity {
             }
         });
     }
-
     //MOSTRA MSG
     private  void alert (String msg){
         Toast.makeText(Dados.this,msg,Toast.LENGTH_SHORT).show();
     }
-
 }
-
-
-
-
-
-
-
-
-
-

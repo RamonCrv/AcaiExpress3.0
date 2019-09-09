@@ -14,24 +14,15 @@ public class tela1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela1);
-
-
-
-
-
-
-
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-
                       Intent i = new Intent(tela1.this,MainActivity.class);
                       startActivity(i);
                     finish();
                 }
-            },3000);
+            },2000);
         }
-
 }
 
 

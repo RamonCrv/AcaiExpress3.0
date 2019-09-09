@@ -15,22 +15,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.example.gs.acaiexpress.ui.main.MainFragment;
 public class MainActivity extends AppCompatActivity  {
-
-
     private Button btnRegistrar;
     private Button btnLogar;
     private EditText editEmail;
     private EditText editSenha;
     private FirebaseAuth mAuth;
-
-
-
     protected void onStart() {
         super.onStart();
-
     }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,40 +34,27 @@ public class MainActivity extends AppCompatActivity  {
             getSupportFragmentManager().beginTransaction().replace(R.id.container, MainFragment.newInstance()).commitNow();
         }
     }
-
     //EVENTOS DE BOTÕES
     private void eventoClicks() {
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 String email = editEmail.getText().toString().trim();
                 String senha = editSenha.getText().toString().trim();
-
                 criarUser(email,senha);
             }
         });
-
         btnLogar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
                 String email = editEmail.getText().toString().trim();
                 String senha = editSenha.getText().toString().trim();
                 login(email, senha);
-
             }
         });
     }
-
-
-
-
     //CRIAR USUARIO TRADICIONAL
     private void criarUser(String email, String senha){
-
         if(email.contains("@") == false){
             alert("EMAIL INVALIDO");
         }else{
@@ -85,72 +64,51 @@ public class MainActivity extends AppCompatActivity  {
                 mAuth.createUserWithEmailAndPassword(email,senha).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete( Task<AuthResult> task) {
-
                         if(task.isSuccessful()){
-
                             mAuth.getCurrentUser();
-
                             alert("Cadastrado com sucesso ");
-
                             Intent i =new Intent(MainActivity.this, Dados.class);
                             startActivity(i);
                         }else{
-
                             alert("Email já Cadastrado");
                         }
                     }
                 });
             }
         }
-
     }
-
     //FAZ O LOGIN TRADICIONAL
     private void login(String email, String senha) {
+        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(senha)) {
+            alert("prencha todos os campos");
+        } else {
+            mAuth.signInWithEmailAndPassword(email, senha).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
 
-      if(TextUtils.isEmpty(email) || TextUtils.isEmpty(senha)){
-        alert("prencha todos os campos");
-      }else{
-          mAuth.signInWithEmailAndPassword(email,senha).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-
-              @Override
-              public void onComplete(Task<AuthResult> task) {
-                  if (task.isSuccessful()){
-
-                      Intent i =new Intent(MainActivity.this, Dados.class);
-                      startActivity(i);
-                      //alert("Logou");
-
-                  }else{
-                      alert("Email ou senha incorreto");
-                  }
-              }
-          });
-      }
-
+                @Override
+                public void onComplete(Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        Intent i = new Intent(MainActivity.this, Dados.class);
+                        startActivity(i);
+                        //alert("Logou");
+                    } else {
+                        alert("Email ou senha incorreto");
+                    }
+                }
+            });
+        }
     }
-
     //INICIALIZA COMPONENTES
     private void inicializarComponentes() {
         btnRegistrar = (Button) findViewById(R.id.btCadastrar);
         btnLogar = (Button) findViewById(R.id.btLogar);
-
         editEmail = (EditText) findViewById(R.id.editEmail);
         editSenha = (EditText) findViewById(R.id.editSenha);
     }
-
     //MOSTRA MSG
     private  void alert (String msg){
         final  Toast toast = new Toast(getApplicationContext());
         toast.setGravity(Gravity.CENTER_VERTICAL, 0,0);
-
         toast.setDuration(Toast.LENGTH_SHORT);
         Toast.makeText(MainActivity.this,msg,Toast.LENGTH_SHORT).show();
     }
-
-    //GOOGLE THINGS THAT WE ARE NOT USING YET
-
-
 }
-
-
