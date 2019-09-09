@@ -32,7 +32,7 @@ public class Um extends AppCompatActivity {
             }
 
     private void caregando() {
-        progressBar.setVisibility(View.GONE);
+
         AlertDialog.Builder megaBox = new AlertDialog.Builder(this);
         megaBox.setTitle("Entrando");
         megaBox.setMessage("Caregando...");

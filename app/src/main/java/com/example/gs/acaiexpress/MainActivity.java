@@ -1,5 +1,4 @@
 package com.example.gs.acaiexpress;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,10 +35,8 @@ public class MainActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
-
         inicializarComponentes();
         eventoClicks();
-
         mAuth = FirebaseAuth.getInstance();
 
 
