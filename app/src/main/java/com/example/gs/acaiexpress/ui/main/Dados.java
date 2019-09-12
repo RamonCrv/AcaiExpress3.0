@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.location.Address;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -23,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.gs.acaiexpress.Cadastro;
 import com.example.gs.acaiexpress.MainActivity;
 import com.example.gs.acaiexpress.Um;
 import com.google.android.gms.auth.api.Auth;
@@ -65,13 +69,13 @@ public class Dados extends AppCompatActivity {
     public EditText preso;
     private TextView vnome;
     private TextView vpreco;
-    private Button btout;
     private FirebaseUser user;
     private ImageView mImagPhoto;
     private  FirebaseAuth auth;
     private Uri mUri;
     private CheckBox abertoCheck;
     private boolean trocouImagem = false;
+    private Button btlocal;
     DatabaseReference databaseDoc;
     DatabaseReference databaseDoc2;
     String url;
@@ -110,12 +114,18 @@ public class Dados extends AppCompatActivity {
                 selectfoto();
             }
         });
+        btlocal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Dados.this, ActivityLocation.class);
+                startActivity(i);
+            }
+        });
     }
     //INICIA COMPONENTES
     private void inicializarComponentes() {
         FirebaseApp.initializeApp(Dados.this);
-        vnome = (TextView) findViewById(R.id.txnome);
-        vpreco = (TextView) findViewById(R.id.txpreco);
+        btlocal = (Button) findViewById(R.id.btnlocal);
         nPonto = (EditText) findViewById(R.id.editNponto);
         preso = (EditText) findViewById(R.id.editPreso);
         btnSalvar = (Button) findViewById(R.id.btSalvar);

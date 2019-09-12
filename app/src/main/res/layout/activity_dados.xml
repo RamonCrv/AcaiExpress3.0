@@ -98,22 +98,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/txnome"
+    <Button
+        android:id="@+id/btnlocal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/txpreco"
+        android:layout_marginStart="162dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="161dp"
+        android:layout_marginBottom="18dp"
+        android:text="test Local"
+        app:layout_constraintBottom_toTopOf="@+id/btSalvar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btSalvar" />
-
-    <TextView
-        android:id="@+id/txpreco"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btSalvar" />
+        app:layout_constraintTop_toBottomOf="@+id/abertoBox" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

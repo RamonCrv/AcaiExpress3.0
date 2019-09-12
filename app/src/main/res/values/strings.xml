@@ -4,4 +4,7 @@
     <string name="not_log_in">não pode iniciar</string>
     <string name="not_close_session">so lamneto</string>
     <string name="not_revoke">nao se pode revocar aceso</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

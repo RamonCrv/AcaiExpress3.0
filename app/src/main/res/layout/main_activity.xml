@@ -84,6 +84,20 @@
             tools:ignore="MissingConstraints">
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btmap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="162dp"
+            android:layout_marginTop="271dp"
+            android:layout_marginEnd="162dp"
+            android:layout_marginBottom="128dp"
+            android:text="maps"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btLogar" />
         android:layout_width=""
         android:layout_height=""
 

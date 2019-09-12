@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.example.gs.acaiexpress.ui.main.MainFragment;
 public class MainActivity extends AppCompatActivity  {
     private Button btnRegistrar;
+    private Button btnmaps;
     private Button btnLogar;
     private EditText editEmail;
     private EditText editSenha;
@@ -51,7 +52,17 @@ public class MainActivity extends AppCompatActivity  {
                 login(email, senha);
             }
         });
+
+        btnmaps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, mapa.class);
+                startActivity(i);
+            }
+        });
+
     }
+
 
     //FAZ O LOGIN TRADICIONAL
     private void login(String email, String senha) {
@@ -76,6 +87,7 @@ public class MainActivity extends AppCompatActivity  {
     //INICIALIZA COMPONENTES
     private void inicializarComponentes() {
         btnRegistrar = (Button) findViewById(R.id.btCadastrar);
+        btnmaps = (Button)findViewById(R.id.btmap);
         btnLogar = (Button) findViewById(R.id.btLogar);
         editEmail = (EditText) findViewById(R.id.editEmail);
         editSenha = (EditText) findViewById(R.id.editSenha);
