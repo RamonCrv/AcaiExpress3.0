@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity   {
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.container, MainFragment.newInstance()).commitNow();
         }
+
     }
     //EVENTOS DE BOTÕES
     private void eventoClicks() {
