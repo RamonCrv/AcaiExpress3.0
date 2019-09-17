@@ -43,12 +43,9 @@ public class ActivityLocation extends AppCompatActivity {
 
         double latitude = 0.0;
         double longitude = 0.0;
-
+        
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
-
-
         }else{
-
             locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
         }
