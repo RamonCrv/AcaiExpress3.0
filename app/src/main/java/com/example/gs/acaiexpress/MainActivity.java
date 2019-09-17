@@ -1,5 +1,10 @@
 package com.example.gs.acaiexpress;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,13 +19,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.example.gs.acaiexpress.ui.main.MainFragment;
-public class MainActivity extends AppCompatActivity  {
+
+
+public class MainActivity extends AppCompatActivity   {
     private Button btnRegistrar;
     private Button btnmaps;
     private Button btnLogar;
     private EditText editEmail;
     private EditText editSenha;
     private FirebaseAuth mAuth;
+
+
     protected void onStart() {
         super.onStart();
     }
@@ -30,6 +39,8 @@ public class MainActivity extends AppCompatActivity  {
         setContentView(R.layout.main_activity);
         inicializarComponentes();
         eventoClicks();
+
+
         mAuth = FirebaseAuth.getInstance();
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.container, MainFragment.newInstance()).commitNow();
@@ -99,4 +110,7 @@ public class MainActivity extends AppCompatActivity  {
         toast.setDuration(Toast.LENGTH_SHORT);
         Toast.makeText(MainActivity.this,msg,Toast.LENGTH_SHORT).show();
     }
+
+
+
 }

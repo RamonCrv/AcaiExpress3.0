@@ -4,8 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.location.Address;
@@ -88,6 +92,7 @@ public class Dados extends AppCompatActivity {
         setContentView(R.layout.activity_dados);
         Intent b = new Intent(Dados.this, Um.class);
         startActivity(b);
+        pedirPermissao();
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         databaseDoc = FirebaseDatabase.getInstance().getReference("Ponto");
         inicializarComponentes();
@@ -117,10 +122,19 @@ public class Dados extends AppCompatActivity {
         btlocal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Dados.this, ActivityLocation.class);
-                startActivity(i);
+
+                if (pedirPermissao()) {
+                    Intent i = new Intent(Dados.this, ActivityLocation.class);
+                    startActivity(i);
+                }else{
+
+                    alert("É necessario a permissão do GPS para usar está função");
+                }
+
             }
         });
+
+
     }
     //INICIA COMPONENTES
     private void inicializarComponentes() {
@@ -250,4 +264,17 @@ public class Dados extends AppCompatActivity {
     private  void alert (String msg){
         Toast.makeText(Dados.this,msg,Toast.LENGTH_SHORT).show();
     }
+    boolean pedirPermissao(){
+
+        ActivityCompat.requestPermissions(Dados.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        if (ContextCompat.checkSelfPermission(Dados.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return false;
+        }else {
+            return true;
+        }
+
+    }
+
+
+
 }

@@ -60,7 +60,7 @@ public class ActivityLocation extends AppCompatActivity {
         textLatitude.setText("Latitude:"+latitude);
         try {
             address = buscarEndereco (latitude,longitude);
-            textCidade.setText("Cidade:"+address.getLocality());
+            textCidade.setText("Cidade:"+address.getSubAdminArea());
             textEstado.setText("Estado:"+address.getAdminArea());
             textPais.setText("País..:"+address.getCountryName());
         } catch (Exception e) {
