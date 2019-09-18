@@ -21,7 +21,7 @@ public class tela1 extends AppCompatActivity {
                       startActivity(i);
                     finish();
                 }
-            },2000);
+            },2500);
         }
 }
 
