@@ -42,26 +42,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.345" />
+            app:layout_constraintVertical_bias="0.612" />
 
-        <EditText
-            android:id="@+id/editEmail"
-            android:layout_width="271dp"
-            android:layout_height="46dp"
-            android:layout_marginStart="104dp"
-            android:layout_marginEnd="94dp"
-            android:background="@drawable/texts"
-            android:drawableLeft="@drawable/icon_savel"
-            android:ems="10"
-            android:gravity="center|left"
-            android:hint=" Email:"
-            android:inputType="textEmailAddress"
+        <Button
+            android:id="@+id/btmap"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="maps"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.586"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.17" />
+            app:layout_constraintEnd_toEndOf="@+id/btLogar"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/btLogar"
+            app:layout_constraintTop_toBottomOf="@+id/btLogar"
+            app:layout_constraintVertical_bias="0.147" />
 
         <EditText
             android:id="@+id/editSenha"
@@ -79,25 +72,32 @@
             app:layout_constraintStart_toStartOf="@+id/editEmail"
             app:layout_constraintTop_toBottomOf="@+id/editEmail"
             app:layout_constraintVertical_bias="0.317" />
-        <LinearLayout android:layout_height="0dp"
+
+        <EditText
+            android:id="@+id/editEmail"
+            android:layout_width="271dp"
+            android:layout_height="46dp"
+            android:layout_marginStart="104dp"
+            android:layout_marginEnd="94dp"
+            android:background="@drawable/texts"
+            android:drawableLeft="@drawable/icon_savel"
+            android:ems="10"
+            android:gravity="center|left"
+            android:hint=" Email:"
+            android:inputType="textEmailAddress"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.565"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.284" />
+
+        <LinearLayout
             android:layout_width="0dp"
+            android:layout_height="0dp"
             tools:ignore="MissingConstraints">
 
         </LinearLayout>
-
-        <Button
-            android:id="@+id/btmap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="162dp"
-            android:layout_marginTop="271dp"
-            android:layout_marginEnd="162dp"
-            android:layout_marginBottom="128dp"
-            android:text="maps"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btLogar" />
         android:layout_width=""
         android:layout_height=""
 

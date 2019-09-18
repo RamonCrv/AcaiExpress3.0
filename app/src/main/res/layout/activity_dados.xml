@@ -93,6 +93,7 @@
         android:layout_marginEnd="142dp"
         android:layout_marginBottom="492dp"
         android:background="@drawable/caixatext"
+        android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
