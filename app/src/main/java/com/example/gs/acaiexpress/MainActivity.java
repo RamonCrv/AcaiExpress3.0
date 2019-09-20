@@ -1,15 +1,12 @@
 package com.example.gs.acaiexpress;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
-import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -20,7 +17,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.example.gs.acaiexpress.ui.main.MainFragment;
 
-
 public class MainActivity extends AppCompatActivity   {
     private Button btnRegistrar;
     private Button btnmaps;
@@ -29,7 +25,6 @@ public class MainActivity extends AppCompatActivity   {
     private EditText editSenha;
     private FirebaseAuth mAuth;
 
-
     protected void onStart() {
         super.onStart();
     }
@@ -37,9 +32,9 @@ public class MainActivity extends AppCompatActivity   {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+
         inicializarComponentes();
         eventoClicks();
-
 
         mAuth = FirebaseAuth.getInstance();
         if (savedInstanceState == null) {
@@ -65,13 +60,6 @@ public class MainActivity extends AppCompatActivity   {
             }
         });
 
-        btnmaps.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, mapa.class);
-                startActivity(i);
-            }
-        });
 
     }
 
@@ -99,7 +87,7 @@ public class MainActivity extends AppCompatActivity   {
     //INICIALIZA COMPONENTES
     private void inicializarComponentes() {
         btnRegistrar = (Button) findViewById(R.id.btCadastrar);
-        btnmaps = (Button)findViewById(R.id.btmap);
+
         btnLogar = (Button) findViewById(R.id.btLogar);
         editEmail = (EditText) findViewById(R.id.editEmail);
         editSenha = (EditText) findViewById(R.id.editSenha);
