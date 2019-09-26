@@ -88,6 +88,7 @@ public class Dados extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dados);
         Intent b = new Intent(Dados.this, Um.class);

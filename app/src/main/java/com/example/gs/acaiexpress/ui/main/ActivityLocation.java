@@ -2,6 +2,7 @@ package com.example.gs.acaiexpress.ui.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Context;
@@ -32,6 +33,7 @@ public class ActivityLocation extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
 

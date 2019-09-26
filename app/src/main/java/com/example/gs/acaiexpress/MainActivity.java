@@ -1,5 +1,7 @@
 package com.example.gs.acaiexpress;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity   {
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 

@@ -14,6 +14,7 @@ public class Ponto {
         return aberto;
     }
 
+
     public void setAberto(String aberto) {
         this.aberto = aberto;
     }

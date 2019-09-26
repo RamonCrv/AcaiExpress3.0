@@ -4,21 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/ic_logo2_background"
+    android:background="#ffffff"
     tools:context=".tela1">
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
     <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="429dp"
-        android:layout_height="316dp"
-        android:layout_marginStart="85dp"
-        android:layout_marginTop="102dp"
-        android:layout_marginEnd="85dp"
-        android:layout_marginBottom="378dp"
+        android:id="@+id/imageView2"
+        android:layout_width="410dp"
+        android:layout_height="352dp"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/logo_com_fundo" />
+        app:layout_constraintVertical_bias="0.357"
+        app:srcCompat="@mipmap/logo_com_fundo_foreground" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.gs.acaiexpress.ui.main.Dados;
 
@@ -15,6 +16,7 @@ public class Um extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorPrimary));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_um);
         caregando();
