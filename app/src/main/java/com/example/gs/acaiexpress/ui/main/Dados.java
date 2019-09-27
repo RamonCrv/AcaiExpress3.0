@@ -177,6 +177,9 @@ public class Dados extends AppCompatActivity {
             ponto.setNome(nPonto.getText().toString());
             ponto.setPreso(preso.getText().toString());
             ponto.setID(auth.getCurrentUser().getUid());
+            ponto.setLatiT("0");
+            ponto.setLongT("0");
+            ponto.setVerificado("F");
             if (abertoCheck.isChecked()){
                 ponto.setAberto("Aberto");
             }else{

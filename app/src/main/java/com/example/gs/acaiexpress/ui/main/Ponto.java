@@ -9,6 +9,33 @@ public class Ponto {
     private String cordx;
     private String cordY;
     private String aberto;
+    private String latiT;
+    private String longT;
+    private String verificado;
+
+    public String getLongT() {
+        return longT;
+    }
+
+    public void setLongT(String longT) {
+        this.longT = longT;
+    }
+
+    public String getVerificado() {
+        return verificado;
+    }
+
+    public void setVerificado(String verificado) {
+        this.verificado = verificado;
+    }
+
+    public String getLatiT() {
+        return latiT;
+    }
+
+    public void setLatiT(String latiT) {
+        this.latiT = latiT;
+    }
 
     public String getAberto() {
         return aberto;
