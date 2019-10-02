@@ -268,6 +268,8 @@ public class Dados extends AppCompatActivity {
     private  void alert (String msg){
         Toast.makeText(Dados.this,msg,Toast.LENGTH_SHORT).show();
     }
+
+    //Pedri Permissao
     boolean pedirPermissao(){
 
         ActivityCompat.requestPermissions(Dados.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);

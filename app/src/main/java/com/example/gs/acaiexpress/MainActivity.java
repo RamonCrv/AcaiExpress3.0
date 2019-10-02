@@ -1,17 +1,13 @@
 package com.example.gs.acaiexpress;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.gs.acaiexpress.ui.main.Dados;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -46,16 +42,7 @@ public class MainActivity extends AppCompatActivity   {
     }
 
 
-
-
-
-    private void showMessage(String text) {
-        Toast.makeText(getApplicationContext(),text,Toast.LENGTH_LONG).show();
-
-    }
-
-
-    //EVENTOS DE BOTÕES
+       //EVENTOS DE BOTÕES
     private void eventoClicks() {
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
