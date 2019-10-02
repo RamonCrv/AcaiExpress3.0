@@ -11,6 +11,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.example.gs.acaiexpress.ui.main.Dados;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,12 +22,10 @@ import com.example.gs.acaiexpress.ui.main.MainFragment;
 
 public class MainActivity extends AppCompatActivity   {
     private Button btnRegistrar;
-    private Button btnmaps;
     private Button btnLogar;
     private EditText editEmail;
     private EditText editSenha;
     private FirebaseAuth mAuth;
-
     protected void onStart() {
         super.onStart();
     }
@@ -45,6 +44,17 @@ public class MainActivity extends AppCompatActivity   {
         }
 
     }
+
+
+
+
+
+    private void showMessage(String text) {
+        Toast.makeText(getApplicationContext(),text,Toast.LENGTH_LONG).show();
+
+    }
+
+
     //EVENTOS DE BOTÕES
     private void eventoClicks() {
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +100,6 @@ public class MainActivity extends AppCompatActivity   {
     //INICIALIZA COMPONENTES
     private void inicializarComponentes() {
         btnRegistrar = (Button) findViewById(R.id.btCadastrar);
-
         btnLogar = (Button) findViewById(R.id.btLogar);
         editEmail = (EditText) findViewById(R.id.editEmail);
         editSenha = (EditText) findViewById(R.id.editSenha);
