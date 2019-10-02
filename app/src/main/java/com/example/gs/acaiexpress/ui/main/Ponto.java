@@ -1,8 +1,6 @@
 package com.example.gs.acaiexpress.ui.main;
 
 public class Ponto {
-
-
     private String ID;
     private String nome;
     private String preso;

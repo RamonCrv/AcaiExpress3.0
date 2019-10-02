@@ -8,20 +8,20 @@
     tools:context=".ui.main.Dados">
 
     <Button
-        android:id="@+id/btSalvar"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="128dp"
-        android:background="@drawable/btn1"
-        android:text="Salvar e Atualizar"
-        android:textAllCaps="false"
-        android:textColor="#66f9B0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.975" />
+    android:id="@+id/btSalvar"
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="128dp"
+    android:background="@drawable/btn1"
+    android:text="Salvar e Atualizar"
+    android:textAllCaps="false"
+    android:textColor="#66f9B0"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="1.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.975" />
 
     <Button
         android:id="@+id/ediimg"

@@ -164,8 +164,8 @@ public class Dados extends AppCompatActivity {
     }
     //ESCOLHER FOTO NO CELULAR
     private void selectfoto(){
-            Intent intent = new Intent(Intent.ACTION_PICK);
-            intent.setType("image/*");
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/*");
             startActivityForResult(intent,0);
     }
     //ADICIONAR DOC NO BANCO
