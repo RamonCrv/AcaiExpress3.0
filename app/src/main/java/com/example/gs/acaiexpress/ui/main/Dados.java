@@ -85,6 +85,10 @@ public class Dados extends AppCompatActivity {
     String url;
 
 
+    private boolean priVezCriado;
+    private String latAtual, longAtual;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,8 +181,13 @@ public class Dados extends AppCompatActivity {
             ponto.setNome(nPonto.getText().toString());
             ponto.setPreso(preso.getText().toString());
             ponto.setID(auth.getCurrentUser().getUid());
-            ponto.setLatiT("0");
-            ponto.setLongT("0");
+            if (priVezCriado){
+                ponto.setLatiT("0");
+                ponto.setLongT("0");
+            }else{
+                ponto.setLatiT(latAtual);
+                ponto.setLongT(longAtual);
+            }
             ponto.setVerificado("F");
             if (abertoCheck.isChecked()){
                 ponto.setAberto("Aberto");
@@ -242,13 +251,17 @@ public class Dados extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
+                    priVezCriado = false;
+
                    String contAcha = dataSnapshot.child(userID).child("id").getValue().toString();
                     if(contAcha == null){
                         alert("NÃO ACHOU");
                     }else{
                         nPonto.setText(dataSnapshot.child(userID).child("nome").getValue().toString());
                         preso.setText(dataSnapshot.child(userID).child("preso").getValue().toString());
-                       String situacao = dataSnapshot.child(userID).child("aberto").getValue().toString();
+                        String situacao = dataSnapshot.child(userID).child("aberto").getValue().toString();
+                        latAtual = dataSnapshot.child(userID).child("latiT").getValue().toString();
+                        longAtual =  dataSnapshot.child(userID).child("longT").getValue().toString();
                         if (situacao.equals("Aberto")){
                             abertoCheck.setChecked(true);
                         }else{
@@ -256,11 +269,12 @@ public class Dados extends AppCompatActivity {
                         }
                     }
                 }else {
-                    alert("NÃO ACHOU2");
+                   priVezCriado = true;
                 }
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
             }
         });
     }
