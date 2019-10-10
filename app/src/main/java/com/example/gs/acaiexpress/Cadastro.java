@@ -26,6 +26,8 @@ public class Cadastro extends AppCompatActivity {
     private EditText editEmail;
     private EditText editSenha;
     private FirebaseAuth mAuth;
+    private EditText conSenha;
+    public Button voltar;
     protected void onStart() {
         super.onStart();
     }
@@ -43,6 +45,12 @@ public class Cadastro extends AppCompatActivity {
     }
     //EVENTOS DE BOTÕES
     private void eventoClicks() {
+        voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,20 +68,25 @@ public class Cadastro extends AppCompatActivity {
         }else{
             if (senha.length() <=7 ){
                 alert("SENHA MUITO PEQUENA");
+
             }else{
-                mAuth.createUserWithEmailAndPassword(email,senha).addOnCompleteListener(Cadastro.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete( Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            mAuth.getCurrentUser();
-                            alert("Cadastrado com Sucesso!");
-                            Intent i =new Intent(Cadastro.this, MainActivity.class);
-                            startActivity(i);
-                        }else{
-                            alert("Email já Cadastrado");
+                if (editSenha.getText().toString().trim().equals(conSenha.getText().toString().trim()) == false){
+                    alert("AS SENHAS NÃO COMBINAM");
+                }else{
+                    mAuth.createUserWithEmailAndPassword(email,senha).addOnCompleteListener(Cadastro.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete( Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                mAuth.getCurrentUser();
+                                alert("Cadastrado com Sucesso!");
+                                Intent i =new Intent(Cadastro.this, MainActivity.class);
+                                startActivity(i);
+                            }else{
+                                alert("Email já Cadastrado");
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
         }
     }
@@ -83,6 +96,8 @@ public class Cadastro extends AppCompatActivity {
         btnRegistrar = (Button) findViewById(R.id.btCadastrar);
         editEmail = (EditText) findViewById(R.id.editEmail);
         editSenha = (EditText) findViewById(R.id.editSenha);
+        conSenha = ((EditText) findViewById(R.id.ConfSenha));
+        voltar = (findViewById(R.id.btnVoltar));
     }
     //MOSTRA MSG
     private  void alert (String msg){
