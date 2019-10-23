@@ -144,7 +144,6 @@ public class Dados extends AppCompatActivity {
     //INICIA COMPONENTES
     private void inicializarComponentes() {
         FirebaseApp.initializeApp(Dados.this);
-        btlocal = (Button) findViewById(R.id.btnlocal);
         nPonto = (EditText) findViewById(R.id.editNponto);
         preso = (EditText) findViewById(R.id.editPreso);
         btnSalvar = (Button) findViewById(R.id.btSalvar);

@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/stru"
+    android:background="@drawable/fundoapp"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout

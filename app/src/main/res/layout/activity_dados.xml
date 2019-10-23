@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@drawable/fundo2app"
     tools:context=".ui.main.Dados">
-
     <Button
     android:id="@+id/btSalvar"
     android:layout_width="150dp"
@@ -22,7 +21,6 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.975" />
-
     <Button
         android:id="@+id/ediimg"
         android:layout_width="wrap_content"
@@ -41,7 +39,6 @@
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView"
         app:layout_constraintVertical_bias="1.0" />
-
     <CheckBox
         android:id="@+id/abertoBox"
         android:layout_width="wrap_content"
@@ -55,8 +52,8 @@
 
     <EditText
         android:id="@+id/editNponto"
-        android:layout_width="380dp"
-        android:layout_height="150dp"
+        android:layout_width="288dp"
+        android:layout_height="57dp"
         android:background="@drawable/caixatext"
         android:ems="10"
         android:gravity="left"
@@ -64,11 +61,10 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.56"
+        app:layout_constraintHorizontal_bias="0.585"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.666" />
-
+        app:layout_constraintVertical_bias="0.56" />
     <EditText
         android:id="@+id/editPreso"
         android:layout_width="wrap_content"
@@ -98,19 +94,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnlocal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="162dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="161dp"
-        android:layout_marginBottom="18dp"
-        android:text="test Local"
-        app:layout_constraintBottom_toTopOf="@+id/btSalvar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/abertoBox" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
