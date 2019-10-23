@@ -124,20 +124,6 @@ public class Dados extends AppCompatActivity {
                 selectfoto();
             }
         });
-        btlocal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                if (pedirPermissao()) {
-                    Intent i = new Intent(Dados.this, ActivityLocation.class);
-                    startActivity(i);
-                }else{
-
-                    alert("É necessario a permissão do GPS para usar está função");
-                }
-
-            }
-        });
 
 
     }

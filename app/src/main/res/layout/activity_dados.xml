@@ -39,10 +39,11 @@
         app:layout_constraintStart_toStartOf="@+id/imageView"
         app:layout_constraintTop_toTopOf="@+id/imageView"
         app:layout_constraintVertical_bias="1.0" />
+
     <CheckBox
         android:id="@+id/abertoBox"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_width="94dp"
+        android:layout_height="91dp"
         android:text="Aberto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,13 +53,14 @@
 
     <EditText
         android:id="@+id/editNponto"
-        android:layout_width="288dp"
-        android:layout_height="57dp"
+        android:layout_width="284dp"
+        android:layout_height="47dp"
         android:background="@drawable/caixatext"
         android:ems="10"
-        android:gravity="left"
-        android:hint="Sobre o Local:..."
+        android:gravity="center"
+        android:hint="Nome do seu local"
         android:inputType="textPersonName"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.585"
@@ -79,7 +81,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.426" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="430dp"
