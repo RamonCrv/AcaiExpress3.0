@@ -1,24 +1,17 @@
 package com.example.gs.acaiexpress.ui.main;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.location.Address;
-import android.location.Location;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -28,20 +21,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
-import com.example.gs.acaiexpress.Cadastro;
-import com.example.gs.acaiexpress.MainActivity;
 import com.example.gs.acaiexpress.Um;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.FirebaseApp;
@@ -51,21 +33,15 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-
-
 import com.example.gs.acaiexpress.R;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
-
 import java.io.IOException;
-
+import java.util.Random;
 
 public class Dados extends AppCompatActivity {
-
     private Button btnSalvar;
     private Button ediimge;
     private Button verif;
@@ -73,6 +49,7 @@ public class Dados extends AppCompatActivity {
     public EditText preso;
     private TextView vnome;
     private TextView vpreco;
+    private  TextView codAva;
     private FirebaseUser user;
     private ImageView mImagPhoto;
     private  FirebaseAuth auth;
@@ -83,13 +60,9 @@ public class Dados extends AppCompatActivity {
     DatabaseReference databaseDoc;
     DatabaseReference databaseDoc2;
     String url;
-
-
     private boolean priVezCriado;
     private String latAtual, longAtual;
-
-
-
+    private static final String ALLOWED_CHARACTERS ="0123456789qwertyuiopasdfghjklzxcvbnm";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
@@ -136,6 +109,8 @@ public class Dados extends AppCompatActivity {
         ediimge = (Button) findViewById(R.id.ediimg);
         mImagPhoto = (ImageView) findViewById(R.id.imageView);
         abertoCheck = (CheckBox) findViewById(R.id.abertoBox);
+        codAva = (TextView) findViewById(R.id.codAvaView);
+
     }
     //ACHO Q SALVA  A IMAGEM
     @Override
@@ -166,6 +141,7 @@ public class Dados extends AppCompatActivity {
             ponto.setNome(nPonto.getText().toString());
             ponto.setPreso(preso.getText().toString());
             ponto.setID(auth.getCurrentUser().getUid());
+            ponto.setCodAva(getRandomString(6));
             if (priVezCriado){
                 ponto.setLatiT("0");
                 ponto.setLongT("0");
@@ -244,6 +220,10 @@ public class Dados extends AppCompatActivity {
                     }else{
                         nPonto.setText(dataSnapshot.child(userID).child("nome").getValue().toString());
                         preso.setText(dataSnapshot.child(userID).child("preso").getValue().toString());
+                        if (dataSnapshot.child(userID).child("codAva").getValue().toString() != null){
+                            codAva.setText(dataSnapshot.child(userID).child("codAva").getValue().toString());
+                        }
+
                         String situacao = dataSnapshot.child(userID).child("aberto").getValue().toString();
                         latAtual = dataSnapshot.child(userID).child("latiT").getValue().toString();
                         longAtual =  dataSnapshot.child(userID).child("longT").getValue().toString();
@@ -280,6 +260,18 @@ public class Dados extends AppCompatActivity {
         }
 
     }
+
+    private static String getRandomString(final int sizeOfRandomString)
+    {
+        final Random random=new Random();
+        final StringBuilder sb=new StringBuilder(sizeOfRandomString);
+        for(int i=0;i<sizeOfRandomString;++i)
+            sb.append(ALLOWED_CHARACTERS.charAt(random.nextInt(ALLOWED_CHARACTERS.length())));
+        return sb.toString();
+    }
+
+
+
 
 
 

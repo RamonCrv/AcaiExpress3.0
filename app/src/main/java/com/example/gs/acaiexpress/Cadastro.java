@@ -1,18 +1,13 @@
 package com.example.gs.acaiexpress;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.example.gs.acaiexpress.ui.main.Dados;
 import com.example.gs.acaiexpress.ui.main.MainFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -20,9 +15,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Cadastro extends AppCompatActivity {
-
     private Button btnRegistrar;
-
     private EditText editEmail;
     private EditText editSenha;
     private FirebaseAuth mAuth;

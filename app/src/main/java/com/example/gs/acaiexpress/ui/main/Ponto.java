@@ -10,6 +10,15 @@ public class Ponto {
     private String latiT;
     private String longT;
     private String verificado;
+    private String codAva;
+
+    public String getCodAva() {
+        return codAva;
+    }
+
+    public void setCodAva(String codAva) {
+        this.codAva = codAva;
+    }
 
     public String getLongT() {
         return longT;
