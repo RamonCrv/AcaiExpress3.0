@@ -50,6 +50,7 @@ public class Dados extends AppCompatActivity {
     private TextView vnome;
     private TextView vpreco;
     private  TextView codAva;
+    private  TextView medAva;
     private FirebaseUser user;
     private ImageView mImagPhoto;
     private  FirebaseAuth auth;
@@ -110,6 +111,8 @@ public class Dados extends AppCompatActivity {
         mImagPhoto = (ImageView) findViewById(R.id.imageView);
         abertoCheck = (CheckBox) findViewById(R.id.abertoBox);
         codAva = (TextView) findViewById(R.id.codAvaView);
+        medAva = (TextView) findViewById(R.id.txtMedAv);
+
 
     }
     //ACHO Q SALVA  A IMAGEM
@@ -145,6 +148,9 @@ public class Dados extends AppCompatActivity {
             if (priVezCriado){
                 ponto.setLatiT("0");
                 ponto.setLongT("0");
+                ponto.setTotalAv("0");
+                ponto.setSomaAv("0");
+                ponto.setMediaAv("0");
             }else{
                 ponto.setLatiT(latAtual);
                 ponto.setLongT(longAtual);
@@ -220,11 +226,13 @@ public class Dados extends AppCompatActivity {
                     }else{
                         nPonto.setText(dataSnapshot.child(userID).child("nome").getValue().toString());
                         preso.setText(dataSnapshot.child(userID).child("preso").getValue().toString());
+                        medAva.setText(dataSnapshot.child(userID).child("mediaAv").getValue().toString());
                         if (dataSnapshot.child(userID).child("codAva").getValue().toString() != null){
                             codAva.setText(dataSnapshot.child(userID).child("codAva").getValue().toString());
                         }
 
                         String situacao = dataSnapshot.child(userID).child("aberto").getValue().toString();
+
                         latAtual = dataSnapshot.child(userID).child("latiT").getValue().toString();
                         longAtual =  dataSnapshot.child(userID).child("longT").getValue().toString();
                         if (situacao.equals("Aberto")){

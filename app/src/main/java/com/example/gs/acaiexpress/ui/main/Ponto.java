@@ -11,6 +11,9 @@ public class Ponto {
     private String longT;
     private String verificado;
     private String codAva;
+    private String TotalAv;
+    private String SomaAv;
+    private String mediaAv;
 
     public String getCodAva() {
         return codAva;
@@ -34,6 +37,30 @@ public class Ponto {
 
     public void setVerificado(String verificado) {
         this.verificado = verificado;
+    }
+
+    public String getTotalAv() {
+        return TotalAv;
+    }
+
+    public void setTotalAv(String totalAv) {
+        TotalAv = totalAv;
+    }
+
+    public String getSomaAv() {
+        return SomaAv;
+    }
+
+    public void setSomaAv(String somaAv) {
+        SomaAv = somaAv;
+    }
+
+    public String getMediaAv() {
+        return mediaAv;
+    }
+
+    public void setMediaAv(String mediaAv) {
+        this.mediaAv = mediaAv;
     }
 
     public String getLatiT() {
