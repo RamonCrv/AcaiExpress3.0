@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fundo2app"
-    tools:context=".ui.main.Dados">
+    tools:context=".ui.main.Dados2">
     <Button
     android:id="@+id/btSalvar"
     android:layout_width="150dp"
@@ -21,24 +21,6 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.975" />
-    <Button
-        android:id="@+id/ediimg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/btntras"
-        android:drawableLeft="@drawable/ic_action_edite"
-        android:text="EDITE"
-        android:textAllCaps="false"
-        android:textColor="#993399"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView"
-        app:layout_constraintVertical_bias="1.0" />
 
     <CheckBox
         android:id="@+id/abertoBox"
@@ -51,12 +33,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.669" />
-
-    <EditText
+    <TextView
         android:id="@+id/editNponto"
-        android:layout_width="284dp"
+        android:layout_width="0dp"
         android:layout_height="47dp"
-        android:background="@drawable/caixatext"
         android:ems="10"
         android:gravity="center"
         android:hint="Nome do seu local"
@@ -67,22 +47,18 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.561" />
+        app:layout_constraintVertical_bias="0.0" />
 
-    <EditText
+    <TextView
         android:id="@+id/editPreso"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:background="@drawable/texts"
+        android:layout_width="95dp"
+        android:layout_height="40dp"
         android:drawableLeft="@drawable/preso"
         android:ems="10"
-        android:hint="Preço = R$ 0,00"
-        android:inputType="number|phone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.409" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -97,7 +73,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.03" />
 
     <TextView
         android:id="@+id/codAvaView"
@@ -148,11 +125,23 @@
         android:layout_height="40dp"
         android:drawableLeft="@drawable/star"
         android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/editNponto"
+        app:layout_constraintBottom_toTopOf="@+id/abertoBox"
         app:layout_constraintEnd_toEndOf="@+id/editPreso"
-        app:layout_constraintHorizontal_bias="0.532"
         app:layout_constraintStart_toStartOf="@+id/editPreso"
-        app:layout_constraintTop_toBottomOf="@+id/editPreso"
+        app:layout_constraintTop_toBottomOf="@+id/editPreso" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_action_edite"
+        android:text="Configuração"
+        android:background="@drawable/texts"
+        app:layout_constraintBottom_toBottomOf="@+id/editPreso"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.885"
+        app:layout_constraintStart_toEndOf="@+id/editPreso"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

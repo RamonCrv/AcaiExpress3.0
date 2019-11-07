@@ -20,6 +20,7 @@
         <activity android:name=".ReseteSenha"></activity>
         <activity android:name=".ui.main.ActivityLocation" />
         <activity android:name=".Cadastro" />
+        <activity android:name=".ui.main.Dados2" />
         <activity android:name=".MainActivity" />
         <activity android:name=".Um" />
         <activity android:name=".ui.main.Dados" />

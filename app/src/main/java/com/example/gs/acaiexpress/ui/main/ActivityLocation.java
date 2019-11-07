@@ -33,7 +33,7 @@ public class ActivityLocation extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+        getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.color2));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
 

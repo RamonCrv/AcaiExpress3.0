@@ -22,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
+import com.example.gs.acaiexpress.Cadastro;
+import com.example.gs.acaiexpress.MainActivity;
 import com.example.gs.acaiexpress.Um;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -41,20 +43,20 @@ import com.google.firebase.storage.UploadTask;
 import java.io.IOException;
 import java.util.Random;
 
-public class Dados extends AppCompatActivity {
+public class Dados2 extends AppCompatActivity {
     private Button btnSalvar;
     private Button ediimge;
     private Button verif;
-    public EditText nPonto;
-    public EditText preso;
+    public TextView nPonto;
+    public TextView preso;
     private TextView vnome;
-    private Button button;
+    private Button button2;
     private TextView vpreco;
-    private  TextView codAva;
-    private  TextView medAva;
+    private TextView codAva;
+    private TextView medAva;
     private FirebaseUser user;
     private ImageView mImagPhoto;
-    private  FirebaseAuth auth;
+    private FirebaseAuth auth;
     private Uri mUri;
     private CheckBox abertoCheck;
     private boolean trocouImagem = false;
@@ -64,13 +66,14 @@ public class Dados extends AppCompatActivity {
     String url;
     private boolean priVezCriado;
     private String latAtual, longAtual;
-    private static final String ALLOWED_CHARACTERS ="0123456789qwertyuiopasdfghjklzxcvbnm";
+    private static final String ALLOWED_CHARACTERS = "0123456789qwertyuiopasdfghjklzxcvbnm";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dados);
-        Intent b = new Intent(Dados.this, Um.class);
+        setContentView(R.layout.activity_dados2);
+        Intent b = new Intent(Dados2.this, Um.class);
         startActivity(b);
         pedirPermissao();
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
@@ -81,6 +84,7 @@ public class Dados extends AppCompatActivity {
         BuscarDoc();
         BuscarImg();
     }
+
     //AÇÕES DO BOTÕES
     private void eventoClicks() {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
@@ -92,24 +96,24 @@ public class Dados extends AppCompatActivity {
                 trocouImagem = false;
             }
         });
-        ediimge.setOnClickListener(new View.OnClickListener() {
+
+      /*  button2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                trocouImagem = true;
-                selectfoto();
+           public void onClick(View view) {
+                Intent i = new Intent(Dados2.this, Dados.class);
+                startActivity(i);
             }
-        });
+       });
 
 
+    */}
 
-
-    }
     //INICIA COMPONENTES
     private void inicializarComponentes() {
-        FirebaseApp.initializeApp(Dados.this);
-        button = (Button) findViewById(R.id.button);
-        nPonto = (EditText) findViewById(R.id.editNponto);
-        preso = (EditText) findViewById(R.id.editPreso);
+        FirebaseApp.initializeApp(Dados2.this);
+        button2 = (Button) findViewById(R.id.button);
+        nPonto = (TextView) findViewById(R.id.editNponto);
+        preso = (TextView) findViewById(R.id.editPreso);
         btnSalvar = (Button) findViewById(R.id.btSalvar);
         ediimge = (Button) findViewById(R.id.ediimg);
         mImagPhoto = (ImageView) findViewById(R.id.imageView);
@@ -119,173 +123,177 @@ public class Dados extends AppCompatActivity {
 
 
     }
+
     //ACHO Q SALVA  A IMAGEM
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 0){
+        if (requestCode == 0) {
             mUri = data.getData();
             Bitmap bitmap = null;
             try {
-                bitmap =  MediaStore.Images.Media.getBitmap(getContentResolver(),mUri);
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), mUri);
                 mImagPhoto.setImageDrawable(new BitmapDrawable(bitmap));
             } catch (IOException e) {
             }
         }
     }
+
     //ESCOLHER FOTO NO CELULAR
-    private void selectfoto(){
-            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+    private void selectfoto() {
+        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
-            startActivityForResult(intent,0);
+        startActivityForResult(intent, 0);
     }
+
     //ADICIONAR DOC NO BANCO
-    public void AddDoc(){
+    public void AddDoc() {
         String nomePonto = nPonto.getText().toString().trim();
         String preco = preso.getText().toString().trim();
-        if (!TextUtils.isEmpty(nomePonto)||!TextUtils.isEmpty(preco)){
+        if (!TextUtils.isEmpty(nomePonto) || !TextUtils.isEmpty(preco)) {
             Ponto ponto = new Ponto();
             ponto.setNome(nPonto.getText().toString());
             ponto.setPreso(preso.getText().toString());
             ponto.setID(auth.getCurrentUser().getUid());
             ponto.setCodAva(getRandomString(6));
-            if (priVezCriado){
+            if (priVezCriado) {
                 ponto.setLatiT("0");
                 ponto.setLongT("0");
                 ponto.setTotalAv("0");
                 ponto.setSomaAv("0");
                 ponto.setMediaAv("0");
-            }else{
+            } else {
                 ponto.setLatiT(latAtual);
                 ponto.setLongT(longAtual);
             }
             ponto.setVerificado("F");
-            if (abertoCheck.isChecked()){
+            if (abertoCheck.isChecked()) {
                 ponto.setAberto("Aberto");
-            }else{
+            } else {
                 ponto.setAberto("Fechado");
             }
             user = FirebaseAuth.getInstance().getCurrentUser();
             databaseDoc.child(ponto.getID()).setValue(ponto);
-            if (trocouImagem){
+            if (trocouImagem) {
                 saveUserInFirebase();
                 alert("Trocou imagem = true");
             }
             alert("Salvo");
-        }else{
+        } else {
             alert("Erro");
         }
     }
+
     //SALVA A IMAGEM NO STORAGE COM O ID DO USUARIO
     private void saveUserInFirebase() {
         String userID = auth.getCurrentUser().getUid();
-        final StorageReference ref = FirebaseStorage.getInstance().getReference().child("/images/"+userID);
+        final StorageReference ref = FirebaseStorage.getInstance().getReference().child("/images/" + userID);
         ref.putFile(mUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                     @Override
                     public void onSuccess(Uri uri) {
-                        Log.i("teste",uri.toString());
+                        Log.i("teste", uri.toString());
                     }
                 });
             }
-        }) .addOnFailureListener(new OnFailureListener() {
+        }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Log.e("test", e.getMessage(), e);
             }
         });
     }
+
     //FUNÇÃO QUE ACHA A IMAGEM NO STORAGE E EXECUTA O GLIDE
-    public void BuscarImg(){
+    public void BuscarImg() {
         final String userID = auth.getCurrentUser().getUid();
         final StorageReference ref = FirebaseStorage.getInstance().getReference().child("/images/").child(userID);
         ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
-               url = uri.toString();
-               glide(url,mImagPhoto);
+                url = uri.toString();
+                glide(url, mImagPhoto);
             }
 
         });
     }
+
     //FUNÇÃO QUE BAIXA A IMAGEM E SALVA NO PONTO
-    public void glide(String url,ImageView imagem){
-    Glide.with(this).load(url).into(imagem);
+    public void glide(String url, ImageView imagem) {
+        Glide.with(this).load(url).into(imagem);
     }
+
     //RESGATA  DOCUMENTO NO DOC
-    public void BuscarDoc(){
+    public void BuscarDoc() {
         databaseDoc2 = FirebaseDatabase.getInstance().getReference();
         final String userID = auth.getCurrentUser().getUid();
         databaseDoc2.child("Ponto").orderByChild("id").equalTo(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
+                if (dataSnapshot.exists()) {
                     priVezCriado = false;
 
-                   String contAcha = dataSnapshot.child(userID).child("id").getValue().toString();
-                    if(contAcha == null){
+                    String contAcha = dataSnapshot.child(userID).child("id").getValue().toString();
+                    if (contAcha == null) {
                         alert("NÃO ACHOU");
-                    }else{
+                    } else {
                         nPonto.setText(dataSnapshot.child(userID).child("nome").getValue().toString());
                         preso.setText(dataSnapshot.child(userID).child("preso").getValue().toString());
-                        medAva.setText(":"+dataSnapshot.child(userID).child("mediaAv").getValue().toString());
-                        if (dataSnapshot.child(userID).child("codAva").getValue().toString() != null){
+                        medAva.setText(":" + dataSnapshot.child(userID).child("mediaAv").getValue().toString());
+                        if (dataSnapshot.child(userID).child("codAva").getValue().toString() != null) {
                             codAva.setText(dataSnapshot.child(userID).child("codAva").getValue().toString());
                         }
 
                         String situacao = dataSnapshot.child(userID).child("aberto").getValue().toString();
 
                         latAtual = dataSnapshot.child(userID).child("latiT").getValue().toString();
-                        longAtual =  dataSnapshot.child(userID).child("longT").getValue().toString();
+                        longAtual = dataSnapshot.child(userID).child("longT").getValue().toString();
                         medAva.setText(dataSnapshot.child(userID).child("mediaAv").getValue().toString());
-                        if (situacao.equals("Aberto")){
+                        if (situacao.equals("Aberto")) {
                             abertoCheck.setChecked(true);
-                        }else{
+                        } else {
                             abertoCheck.setChecked(false);
                         }
                     }
-                }else {
-                   priVezCriado = true;
+                } else {
+                    priVezCriado = true;
                 }
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
     }
+
     //MOSTRA MSG
-    private  void alert (String msg){
-        Toast.makeText(Dados.this,msg,Toast.LENGTH_SHORT).show();
+    private void alert(String msg) {
+        Toast.makeText(Dados2.this, msg, Toast.LENGTH_SHORT).show();
     }
 
     //Pedri Permissao
-    boolean pedirPermissao(){
+    boolean pedirPermissao() {
 
-        ActivityCompat.requestPermissions(Dados.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-        if (ContextCompat.checkSelfPermission(Dados.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        ActivityCompat.requestPermissions(Dados2.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        if (ContextCompat.checkSelfPermission(Dados2.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return false;
-        }else {
+        } else {
 
             return true;
         }
 
     }
 
-    private static String getRandomString(final int sizeOfRandomString)
-    {
-        final Random random=new Random();
-        final StringBuilder sb=new StringBuilder(sizeOfRandomString);
-        for(int i=0;i<sizeOfRandomString;++i)
+    private static String getRandomString(final int sizeOfRandomString) {
+        final Random random = new Random();
+        final StringBuilder sb = new StringBuilder(sizeOfRandomString);
+        for (int i = 0; i < sizeOfRandomString; ++i)
             sb.append(ALLOWED_CHARACTERS.charAt(random.nextInt(ALLOWED_CHARACTERS.length())));
         return sb.toString();
     }
-
-
-
-
 
 
 }
