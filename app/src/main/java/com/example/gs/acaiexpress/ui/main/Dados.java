@@ -63,7 +63,8 @@ public class Dados extends AppCompatActivity {
     DatabaseReference databaseDoc2;
     String url;
     private boolean priVezCriado;
-    private String latAtual, longAtual;
+    private String latAtual, longAtual, TotalDeAv, SomaTdeAv;
+
     private static final String ALLOWED_CHARACTERS ="0123456789qwertyuiopasdfghjklzxcvbnm";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +81,7 @@ public class Dados extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         BuscarDoc();
         BuscarImg();
+        attNotaEmTR();
     }
     //AÇÕES DO BOTÕES
     private void eventoClicks() {
@@ -141,6 +143,11 @@ public class Dados extends AppCompatActivity {
     }
     //ADICIONAR DOC NO BANCO
     public void AddDoc(){
+        if (priVezCriado){
+            //alert("primeira");
+        }else{
+            //alert("N PRIMEIRA");
+        }
         String nomePonto = nPonto.getText().toString().trim();
         String preco = preso.getText().toString().trim();
         if (!TextUtils.isEmpty(nomePonto)||!TextUtils.isEmpty(preco)){
@@ -148,16 +155,24 @@ public class Dados extends AppCompatActivity {
             ponto.setNome(nPonto.getText().toString());
             ponto.setPreso(preso.getText().toString());
             ponto.setID(auth.getCurrentUser().getUid());
-            ponto.setCodAva(getRandomString(6));
+
             if (priVezCriado){
                 ponto.setLatiT("0");
                 ponto.setLongT("0");
                 ponto.setTotalAv("0");
                 ponto.setSomaAv("0");
                 ponto.setMediaAv("0");
+                ponto.setCodAva(getRandomString(6));
+                //alert("Primeira vez");
             }else{
+                alert(latAtual + longAtual + medAva.getText().toString());
                 ponto.setLatiT(latAtual);
                 ponto.setLongT(longAtual);
+                ponto.setMediaAv(medAva.getText().toString());
+                ponto.setCodAva(codAva.getText().toString());
+                ponto.setSomaAv(SomaTdeAv);
+                ponto.setTotalAv(TotalDeAv);
+                //alert(" n Primeira vez");
             }
             ponto.setVerificado("F");
             if (abertoCheck.isChecked()){
@@ -171,7 +186,7 @@ public class Dados extends AppCompatActivity {
                 saveUserInFirebase();
                 alert("Trocou imagem = true");
             }
-            alert("Salvo");
+           // alert("Salvo");
         }else{
             alert("Erro");
         }
@@ -224,6 +239,7 @@ public class Dados extends AppCompatActivity {
                 if(dataSnapshot.exists()){
                     priVezCriado = false;
 
+
                    String contAcha = dataSnapshot.child(userID).child("id").getValue().toString();
                     if(contAcha == null){
                         alert("NÃO ACHOU");
@@ -231,6 +247,7 @@ public class Dados extends AppCompatActivity {
                         nPonto.setText(dataSnapshot.child(userID).child("nome").getValue().toString());
                         preso.setText(dataSnapshot.child(userID).child("preso").getValue().toString());
                         medAva.setText(":"+dataSnapshot.child(userID).child("mediaAv").getValue().toString());
+
                         if (dataSnapshot.child(userID).child("codAva").getValue().toString() != null){
                             codAva.setText(dataSnapshot.child(userID).child("codAva").getValue().toString());
                         }
@@ -240,6 +257,9 @@ public class Dados extends AppCompatActivity {
                         latAtual = dataSnapshot.child(userID).child("latiT").getValue().toString();
                         longAtual =  dataSnapshot.child(userID).child("longT").getValue().toString();
                         medAva.setText(dataSnapshot.child(userID).child("mediaAv").getValue().toString());
+                        TotalDeAv = dataSnapshot.child(userID).child("totalAv").getValue().toString();
+                        SomaTdeAv = dataSnapshot.child(userID).child("somaAv").getValue().toString();
+
                         if (situacao.equals("Aberto")){
                             abertoCheck.setChecked(true);
                         }else{
@@ -248,6 +268,7 @@ public class Dados extends AppCompatActivity {
                     }
                 }else {
                    priVezCriado = true;
+
                 }
             }
             @Override
@@ -282,6 +303,58 @@ public class Dados extends AppCompatActivity {
             sb.append(ALLOWED_CHARACTERS.charAt(random.nextInt(ALLOWED_CHARACTERS.length())));
         return sb.toString();
     }
+
+    void attNotaEmTR(){
+        DatabaseReference databaseDoc5;
+        databaseDoc5 = FirebaseDatabase.getInstance().getReference();
+
+        databaseDoc5.child("Ponto/"+auth.getCurrentUser().getUid()+"/mediaAv").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                medAva.setText(dataSnapshot.getValue().toString());
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        DatabaseReference databaseDoc6;
+        databaseDoc6 = FirebaseDatabase.getInstance().getReference();
+
+        databaseDoc6.child("Ponto/"+auth.getCurrentUser().getUid()+"/totalAv").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                TotalDeAv =dataSnapshot.getValue().toString();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        DatabaseReference databaseDoc7;
+        databaseDoc7 = FirebaseDatabase.getInstance().getReference();
+
+        databaseDoc7.child("Ponto/"+auth.getCurrentUser().getUid()+"/somaAv").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                SomaTdeAv =dataSnapshot.getValue().toString();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
+
+    }
+
+
+
 
 
 
