@@ -15,6 +15,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/logo_branco_round"
         android:supportsRtl="true"
+        android:hardwareAccelerated="false"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".ReseteSenha"></activity>
