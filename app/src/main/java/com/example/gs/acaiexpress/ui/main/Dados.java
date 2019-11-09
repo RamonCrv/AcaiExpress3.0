@@ -68,10 +68,10 @@ public class Dados extends AppCompatActivity {
     private static final String ALLOWED_CHARACTERS ="0123456789qwertyuiopasdfghjklzxcvbnm";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
+        getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.color5));
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dados);
-        Intent b = new Intent(Dados.this, Um.class);
+        Intent b = new Intent(this, Um.class);
         startActivity(b);
         pedirPermissao();
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
@@ -339,7 +339,7 @@ public class Dados extends AppCompatActivity {
         databaseDoc7.child("Ponto/"+auth.getCurrentUser().getUid()+"/somaAv").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                SomaTdeAv =dataSnapshot.getValue().toString();
+          //      SomaTdeAv =dataSnapshot.getValue().toString();
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {

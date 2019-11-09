@@ -16,6 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.example.gs.acaiexpress.ui.main.MainFragment;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity   {
     private Button btnRegistrar;
@@ -25,7 +26,19 @@ public class MainActivity extends AppCompatActivity   {
     private FirebaseAuth mAuth;
     protected void onStart() {
         super.onStart();
+
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            UsuarioLogado();
+        }
+
     }
+
+    private void UsuarioLogado() {
+        Intent i = new Intent(this, Dados.class);
+        startActivity(i);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().setNavigationBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
@@ -41,6 +54,7 @@ public class MainActivity extends AppCompatActivity   {
         }
 
     }
+
 
 
        //EVENTOS DE BOTÕES
