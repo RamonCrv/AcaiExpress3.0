@@ -172,6 +172,7 @@ public class Dados extends AppCompatActivity {
                 ponto.setCodAva(codAva.getText().toString());
                 ponto.setSomaAv(SomaTdeAv);
                 ponto.setTotalAv(TotalDeAv);
+                nPonto.setKeyListener(null);
                 //alert(" n Primeira vez");
             }
             ponto.setVerificado("F");
@@ -311,7 +312,10 @@ public class Dados extends AppCompatActivity {
         databaseDoc5.child("Ponto/"+auth.getCurrentUser().getUid()+"/mediaAv").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                medAva.setText(dataSnapshot.getValue().toString());
+                if(dataSnapshot.exists()){
+                    medAva.setText(dataSnapshot.getValue().toString());
+                }
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -325,7 +329,10 @@ public class Dados extends AppCompatActivity {
         databaseDoc6.child("Ponto/"+auth.getCurrentUser().getUid()+"/totalAv").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                TotalDeAv =dataSnapshot.getValue().toString();
+                if(dataSnapshot.exists()){
+                    TotalDeAv =dataSnapshot.getValue().toString();
+                }
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -339,7 +346,10 @@ public class Dados extends AppCompatActivity {
         databaseDoc7.child("Ponto/"+auth.getCurrentUser().getUid()+"/somaAv").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-          //      SomaTdeAv =dataSnapshot.getValue().toString();
+                if(dataSnapshot.exists()){
+                    SomaTdeAv =dataSnapshot.getValue().toString();
+                }
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
