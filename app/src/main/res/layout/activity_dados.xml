@@ -6,21 +6,23 @@
     android:layout_height="match_parent"
     android:background="@drawable/fundo2app"
     tools:context=".ui.main.Dados">
+
     <Button
-    android:id="@+id/btSalvar"
-    android:layout_width="150dp"
-    android:layout_height="wrap_content"
-    android:layout_marginEnd="128dp"
-    android:background="@drawable/btn1"
-    android:text="Salvar e Atualizar"
-    android:textAllCaps="false"
-    android:textColor="#66f9B0"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="1.0"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.975" />
+        android:id="@+id/btSalvar"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="128dp"
+        android:background="@drawable/btn1"
+        android:text="Salvar e Atualizar"
+        android:textAllCaps="false"
+        android:textColor="#66f9B0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.943" />
+
     <Button
         android:id="@+id/ediimg"
         android:layout_width="wrap_content"
@@ -50,7 +52,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.666" />
+        app:layout_constraintVertical_bias="0.709" />
 
     <EditText
         android:id="@+id/editNponto"
@@ -61,11 +63,11 @@
         android:hint="Nome do seu local"
         android:inputType="textPersonName"
         android:textSize="36sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/editPreso"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.08" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/editPreso"
@@ -82,12 +84,12 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.572" />
+        app:layout_constraintVertical_bias="0.614" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="430dp"
-        android:layout_height="240dp"
+        android:layout_width="425dp"
+        android:layout_height="274dp"
         android:layout_marginStart="141dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="142dp"
@@ -95,8 +97,9 @@
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.147" />
+        app:layout_constraintVertical_bias="0.025" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

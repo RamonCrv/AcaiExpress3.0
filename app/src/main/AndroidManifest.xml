@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.gs.acaiexpress">
+    package="com.example.gg.acaiexpressp">
 
     <uses-feature android:name="android.hardware.location.gps" />
 
@@ -18,14 +18,22 @@
         android:hardwareAccelerated="false"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ReseteSenha"></activity>
-        <activity android:name=".ui.main.ActivityLocation" />
-        <activity android:name=".Cadastro" />
-        <activity android:name=".ui.main.Dados2" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Um" />
-        <activity android:name=".ui.main.Dados" />
-        <activity android:name=".tela1">
+        <activity android:name="com.example.gg.acaiexpressp.ReseteSenha"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.example.gg.acaiexpressp.ui.main.ActivityLocation"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.example.gg.acaiexpressp.Cadastro"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.example.gg.acaiexpressp.ui.main.Dados2"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.example.gg.acaiexpressp.MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.example.gg.acaiexpressp.Um"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.example.gg.acaiexpressp.ui.main.Dados"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.example.gg.acaiexpressp.tela1"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
