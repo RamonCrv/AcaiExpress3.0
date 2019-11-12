@@ -56,7 +56,6 @@
         android:id="@+id/editNponto"
         android:layout_width="wrap_content"
         android:layout_height="47dp"
-        android:background="@drawable/caixatext"
         android:ems="10"
         android:gravity="center"
         android:hint="Nome do seu local"
