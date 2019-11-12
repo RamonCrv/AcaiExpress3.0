@@ -6,21 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/fundo2app"
     tools:context=".ui.main.Dados2">
-    <Button
-    android:id="@+id/btSalvar"
-    android:layout_width="150dp"
-    android:layout_height="wrap_content"
-    android:layout_marginEnd="128dp"
-    android:background="@drawable/btn1"
-    android:text="Salvar e Atualizar"
-    android:textAllCaps="false"
-    android:textColor="#66f9B0"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="1.0"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.975" />
 
     <TextView
         android:id="@+id/editNponto"
@@ -57,16 +42,16 @@
         android:id="@+id/codAvaView"
         android:layout_width="220dp"
         android:layout_height="50dp"
+        android:layout_marginTop="224dp"
         android:background="@drawable/texts"
         android:hint="Em breve"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/btSalvar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.766" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <TextView
         android:id="@+id/textView3"
@@ -78,7 +63,8 @@
         app:layout_constraintBottom_toTopOf="@+id/codAvaView"
         app:layout_constraintEnd_toEndOf="@+id/codAvaView"
         app:layout_constraintStart_toStartOf="@+id/codAvaView"
-        app:layout_constraintTop_toBottomOf="@+id/txtMedAv" />
+        app:layout_constraintTop_toBottomOf="@+id/txtMedAv"
+        app:layout_constraintVertical_bias="0.909" />
 
     <TextView
         android:id="@+id/textView4"
@@ -87,12 +73,12 @@
         android:text="Informe esse codigo ao seus clientes para que eles possam avaliar seu ponto de venda no aplicativo."
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btSalvar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/codAvaView"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.211" />
 
     <TextView
         android:id="@+id/txtMedAv"
@@ -100,11 +86,13 @@
         android:layout_height="49dp"
         android:layout_marginBottom="92dp"
         android:drawableLeft="@drawable/star"
+        android:gravity="center"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/codAvaView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/button"
@@ -113,11 +101,24 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/texts"
         android:drawableLeft="@drawable/ic_action_edite"
-        android:text="Configuração"
+        android:text="Editar Informações"
         app:layout_constraintBottom_toTopOf="@+id/txtMedAv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.942"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Sair da conta"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/codAvaView"
+        app:layout_constraintVertical_bias="0.9" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

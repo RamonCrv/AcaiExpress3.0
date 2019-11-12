@@ -44,14 +44,8 @@ import java.util.Random;
 public class Dados extends AppCompatActivity {
     private Button btnSalvar;
     private Button ediimge;
-    private Button verif;
     public EditText nPonto;
     public EditText preso;
-    private TextView vnome;
-    private Button button;
-    private TextView vpreco;
-    private  TextView codAva;
-    private  TextView medAva;
     private FirebaseUser user;
     private ImageView mImagPhoto;
     private  FirebaseAuth auth;
@@ -63,7 +57,7 @@ public class Dados extends AppCompatActivity {
     DatabaseReference databaseDoc2;
     String url;
     private boolean priVezCriado;
-    private String latAtual, longAtual, TotalDeAv, SomaTdeAv, MedAv, CodAv;
+    private String latAtual, longAtual, TotalDeAv, SomaTdeAv, MedAv, CodAv, NomePt;
 
     private static final String ALLOWED_CHARACTERS ="0123456789qwertyuiopasdfghjklzxcvbnm";
     @Override
@@ -82,7 +76,8 @@ public class Dados extends AppCompatActivity {
         BuscarDoc();
         BuscarImg();
         attNotaEmTR();
-        if (priVezCriado == false){
+        alert(NomePt);
+        if (priVezCriado == false && NomePt != null){
             nPonto.setKeyListener(null);
         }
     }
@@ -91,9 +86,6 @@ public class Dados extends AppCompatActivity {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nomePonto = nPonto.getText().toString().trim();
-                String preco = preso.getText().toString().trim();
-
                 AddDoc();
                 trocouImagem = false;
 
@@ -114,7 +106,6 @@ public class Dados extends AppCompatActivity {
     //INICIA COMPONENTES
     private void inicializarComponentes() {
         FirebaseApp.initializeApp(Dados.this);
-        button = (Button) findViewById(R.id.button);
         nPonto = (EditText) findViewById(R.id.editNponto);
         preso = (EditText) findViewById(R.id.editPreso);
         btnSalvar = (Button) findViewById(R.id.btSalvar);
@@ -246,8 +237,9 @@ public class Dados extends AppCompatActivity {
                         alert("NÃO ACHOU");
                     }else{
                         nPonto.setText(dataSnapshot.child(userID).child("nome").getValue().toString());
+                        NomePt =dataSnapshot.child(userID).child("nome").getValue().toString();
                         preso.setText(dataSnapshot.child(userID).child("preso").getValue().toString());
-                        MedAv = ":"+dataSnapshot.child(userID).child("mediaAv").getValue().toString();
+                        MedAv = dataSnapshot.child(userID).child("mediaAv").getValue().toString();
 
                         if (dataSnapshot.child(userID).child("codAva").getValue().toString() != null){
                             CodAv = dataSnapshot.child(userID).child("codAva").getValue().toString();

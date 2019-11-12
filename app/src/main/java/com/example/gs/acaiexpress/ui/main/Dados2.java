@@ -44,12 +44,8 @@ import java.io.IOException;
 import java.util.Random;
 
 public class Dados2 extends AppCompatActivity {
-    private Button btnSalvar;
-    private Button ediimge;
-    private Button verif;
+
     public TextView nPonto;
-    public TextView preso;
-    private TextView vnome;
     private Button button2;
     private TextView codAva;
     private TextView medAva;
@@ -57,7 +53,7 @@ public class Dados2 extends AppCompatActivity {
     private ImageView mImagPhoto;
     private FirebaseAuth auth;
     private Uri mUri;
-    private boolean trocouImagem = false;
+    private Button sair;
     DatabaseReference databaseDoc;
     DatabaseReference databaseDoc2;
     String url;
@@ -73,13 +69,13 @@ public class Dados2 extends AppCompatActivity {
         Intent b = new Intent(Dados2.this, Um.class);
         startActivity(b);
         pedirPermissao();
-        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         databaseDoc = FirebaseDatabase.getInstance().getReference("Ponto");
         inicializarComponentes();
         eventoClicks();
         auth = FirebaseAuth.getInstance();
         BuscarDoc();
         BuscarImg();
+        attNotaEmTR();
     }
 
     //AÇÕES DO BOTÕES
@@ -93,16 +89,27 @@ public class Dados2 extends AppCompatActivity {
                 startActivity(i);
             }
        });
+        sair.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                singOut();
+                Intent i = new Intent(Dados2.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
 
 
-   }
+   }public void singOut(){
+        FirebaseAuth.getInstance().signOut();
+    }
+
 
     //INICIA COMPONENTES
     private void inicializarComponentes() {
         FirebaseApp.initializeApp(Dados2.this);
         button2 = (Button) findViewById(R.id.button);
+        sair = (Button)findViewById(R.id.button2);
         nPonto = (TextView) findViewById(R.id.editNponto);
-        ediimge = (Button) findViewById(R.id.ediimg);
         mImagPhoto = (ImageView) findViewById(R.id.imageView);
         codAva = (TextView) findViewById(R.id.codAvaView);
         medAva = (TextView) findViewById(R.id.txtMedAv);
@@ -125,68 +132,6 @@ public class Dados2 extends AppCompatActivity {
         }
     }
 
-    //ESCOLHER FOTO NO CELULAR
-    private void selectfoto() {
-        Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        intent.setType("image/*");
-        startActivityForResult(intent, 0);
-    }
-
-    //ADICIONAR DOC NO BANCO
-    public void AddDoc() {
-        String nomePonto = nPonto.getText().toString().trim();
-        String preco = preso.getText().toString().trim();
-        if (!TextUtils.isEmpty(nomePonto) || !TextUtils.isEmpty(preco)) {
-            Ponto ponto = new Ponto();
-            ponto.setNome(nPonto.getText().toString());
-            ponto.setPreso(preso.getText().toString());
-            ponto.setID(auth.getCurrentUser().getUid());
-            ponto.setCodAva(getRandomString(6));
-            if (priVezCriado) {
-                ponto.setLatiT("0");
-                ponto.setLongT("0");
-                ponto.setTotalAv("0");
-                ponto.setSomaAv("0");
-                ponto.setMediaAv("0");
-            } else {
-                ponto.setLatiT(latAtual);
-                ponto.setLongT(longAtual);
-            }
-            ponto.setVerificado("F");
-
-            user = FirebaseAuth.getInstance().getCurrentUser();
-            databaseDoc.child(ponto.getID()).setValue(ponto);
-            if (trocouImagem) {
-                saveUserInFirebase();
-                alert("Trocou imagem = true");
-            }
-            alert("Salvo");
-        } else {
-            alert("Erro");
-        }
-    }
-
-    //SALVA A IMAGEM NO STORAGE COM O ID DO USUARIO
-    private void saveUserInFirebase() {
-        String userID = auth.getCurrentUser().getUid();
-        final StorageReference ref = FirebaseStorage.getInstance().getReference().child("/images/" + userID);
-        ref.putFile(mUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
-                        Log.i("teste", uri.toString());
-                    }
-                });
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Log.e("test", e.getMessage(), e);
-            }
-        });
-    }
 
     //FUNÇÃO QUE ACHA A IMAGEM NO STORAGE E EXECUTA O GLIDE
     public void BuscarImg() {
@@ -223,7 +168,7 @@ public class Dados2 extends AppCompatActivity {
                     } else {
                         nPonto.setText(dataSnapshot.child(userID).child("nome").getValue().toString());
 
-                        medAva.setText(":" + dataSnapshot.child(userID).child("mediaAv").getValue().toString());
+                        medAva.setText(dataSnapshot.child(userID).child("mediaAv").getValue().toString());
                         if (dataSnapshot.child(userID).child("codAva").getValue().toString() != null) {
                             codAva.setText(dataSnapshot.child(userID).child("codAva").getValue().toString());
                         }
@@ -240,7 +185,12 @@ public class Dados2 extends AppCompatActivity {
                         }
                     }
                 } else {
+
+                        button2.setText("Adicionar Informações");
+
+
                     priVezCriado = true;
+                    Toast.makeText(Dados2.this, "Parece que você ainda não possui um ponto cadastrado, acesse Adicionar informações para fazer o cadastro.", Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -275,6 +225,27 @@ public class Dados2 extends AppCompatActivity {
         for (int i = 0; i < sizeOfRandomString; ++i)
             sb.append(ALLOWED_CHARACTERS.charAt(random.nextInt(ALLOWED_CHARACTERS.length())));
         return sb.toString();
+    }
+
+    void attNotaEmTR() {
+        DatabaseReference databaseDoc5;
+        databaseDoc5 = FirebaseDatabase.getInstance().getReference();
+
+        databaseDoc5.child("Ponto/" + auth.getCurrentUser().getUid() + "/mediaAv").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    medAva.setText(dataSnapshot.getValue().toString());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
 
