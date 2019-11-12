@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity   {
     }
 
     private void UsuarioLogado() {
-        Intent i = new Intent(this, Dados.class);
+        Intent i = new Intent(this, Dados2.class);
         startActivity(i);
     }
 
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity   {
                 @Override
                 public void onComplete(Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        Intent i = new Intent(MainActivity.this, Dados.class);
+                        Intent i = new Intent(MainActivity.this, Dados2.class);
                         startActivity(i);
                         //alert("Logou");
                     } else {

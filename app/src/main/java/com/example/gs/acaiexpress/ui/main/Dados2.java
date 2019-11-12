@@ -51,16 +51,13 @@ public class Dados2 extends AppCompatActivity {
     public TextView preso;
     private TextView vnome;
     private Button button2;
-    private TextView vpreco;
     private TextView codAva;
     private TextView medAva;
     private FirebaseUser user;
     private ImageView mImagPhoto;
     private FirebaseAuth auth;
     private Uri mUri;
-    private CheckBox abertoCheck;
     private boolean trocouImagem = false;
-    private Button btlocal;
     DatabaseReference databaseDoc;
     DatabaseReference databaseDoc2;
     String url;
@@ -87,17 +84,9 @@ public class Dados2 extends AppCompatActivity {
 
     //AÇÕES DO BOTÕES
     private void eventoClicks() {
-        btnSalvar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String nomePonto = nPonto.getText().toString().trim();
-                String preco = preso.getText().toString().trim();
-                AddDoc();
-                trocouImagem = false;
-            }
-        });
 
-      /*  button2.setOnClickListener(new View.OnClickListener() {
+
+      button2.setOnClickListener(new View.OnClickListener() {
             @Override
            public void onClick(View view) {
                 Intent i = new Intent(Dados2.this, Dados.class);
@@ -106,18 +95,15 @@ public class Dados2 extends AppCompatActivity {
        });
 
 
-    */}
+   }
 
     //INICIA COMPONENTES
     private void inicializarComponentes() {
         FirebaseApp.initializeApp(Dados2.this);
         button2 = (Button) findViewById(R.id.button);
         nPonto = (TextView) findViewById(R.id.editNponto);
-        preso = (TextView) findViewById(R.id.editPreso);
-        btnSalvar = (Button) findViewById(R.id.btSalvar);
         ediimge = (Button) findViewById(R.id.ediimg);
         mImagPhoto = (ImageView) findViewById(R.id.imageView);
-        abertoCheck = (CheckBox) findViewById(R.id.abertoBox);
         codAva = (TextView) findViewById(R.id.codAvaView);
         medAva = (TextView) findViewById(R.id.txtMedAv);
 
@@ -167,11 +153,7 @@ public class Dados2 extends AppCompatActivity {
                 ponto.setLongT(longAtual);
             }
             ponto.setVerificado("F");
-            if (abertoCheck.isChecked()) {
-                ponto.setAberto("Aberto");
-            } else {
-                ponto.setAberto("Fechado");
-            }
+
             user = FirebaseAuth.getInstance().getCurrentUser();
             databaseDoc.child(ponto.getID()).setValue(ponto);
             if (trocouImagem) {
@@ -240,7 +222,7 @@ public class Dados2 extends AppCompatActivity {
                         alert("NÃO ACHOU");
                     } else {
                         nPonto.setText(dataSnapshot.child(userID).child("nome").getValue().toString());
-                        preso.setText(dataSnapshot.child(userID).child("preso").getValue().toString());
+
                         medAva.setText(":" + dataSnapshot.child(userID).child("mediaAv").getValue().toString());
                         if (dataSnapshot.child(userID).child("codAva").getValue().toString() != null) {
                             codAva.setText(dataSnapshot.child(userID).child("codAva").getValue().toString());
@@ -252,9 +234,9 @@ public class Dados2 extends AppCompatActivity {
                         longAtual = dataSnapshot.child(userID).child("longT").getValue().toString();
                         medAva.setText(dataSnapshot.child(userID).child("mediaAv").getValue().toString());
                         if (situacao.equals("Aberto")) {
-                            abertoCheck.setChecked(true);
+
                         } else {
-                            abertoCheck.setChecked(false);
+
                         }
                     }
                 } else {

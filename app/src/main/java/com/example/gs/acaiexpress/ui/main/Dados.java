@@ -63,7 +63,7 @@ public class Dados extends AppCompatActivity {
     DatabaseReference databaseDoc2;
     String url;
     private boolean priVezCriado;
-    private String latAtual, longAtual, TotalDeAv, SomaTdeAv;
+    private String latAtual, longAtual, TotalDeAv, SomaTdeAv, MedAv, CodAv;
 
     private static final String ALLOWED_CHARACTERS ="0123456789qwertyuiopasdfghjklzxcvbnm";
     @Override
@@ -82,6 +82,9 @@ public class Dados extends AppCompatActivity {
         BuscarDoc();
         BuscarImg();
         attNotaEmTR();
+        if (priVezCriado == false){
+            nPonto.setKeyListener(null);
+        }
     }
     //AÇÕES DO BOTÕES
     private void eventoClicks() {
@@ -90,8 +93,10 @@ public class Dados extends AppCompatActivity {
             public void onClick(View v) {
                 String nomePonto = nPonto.getText().toString().trim();
                 String preco = preso.getText().toString().trim();
+
                 AddDoc();
                 trocouImagem = false;
+
             }
         });
         ediimge.setOnClickListener(new View.OnClickListener() {
@@ -116,8 +121,7 @@ public class Dados extends AppCompatActivity {
         ediimge = (Button) findViewById(R.id.ediimg);
         mImagPhoto = (ImageView) findViewById(R.id.imageView);
         abertoCheck = (CheckBox) findViewById(R.id.abertoBox);
-        codAva = (TextView) findViewById(R.id.codAvaView);
-        medAva = (TextView) findViewById(R.id.txtMedAv);
+
 
 
     }
@@ -143,11 +147,7 @@ public class Dados extends AppCompatActivity {
     }
     //ADICIONAR DOC NO BANCO
     public void AddDoc(){
-        if (priVezCriado){
-            //alert("primeira");
-        }else{
-            //alert("N PRIMEIRA");
-        }
+
         String nomePonto = nPonto.getText().toString().trim();
         String preco = preso.getText().toString().trim();
         if (!TextUtils.isEmpty(nomePonto)||!TextUtils.isEmpty(preco)){
@@ -163,17 +163,17 @@ public class Dados extends AppCompatActivity {
                 ponto.setSomaAv("0");
                 ponto.setMediaAv("0");
                 ponto.setCodAva(getRandomString(6));
-                //alert("Primeira vez");
+
             }else{
-                alert(latAtual + longAtual + medAva.getText().toString());
+
                 ponto.setLatiT(latAtual);
                 ponto.setLongT(longAtual);
-                ponto.setMediaAv(medAva.getText().toString());
-                ponto.setCodAva(codAva.getText().toString());
+                ponto.setMediaAv(MedAv);
+                ponto.setCodAva(CodAv);
                 ponto.setSomaAv(SomaTdeAv);
                 ponto.setTotalAv(TotalDeAv);
-                nPonto.setKeyListener(null);
-                //alert(" n Primeira vez");
+
+
             }
             ponto.setVerificado("F");
             if (abertoCheck.isChecked()){
@@ -187,7 +187,7 @@ public class Dados extends AppCompatActivity {
                 saveUserInFirebase();
                 alert("Trocou imagem = true");
             }
-           // alert("Salvo");
+           alert("Salvo com sucesso");
         }else{
             alert("Erro");
         }
@@ -247,17 +247,17 @@ public class Dados extends AppCompatActivity {
                     }else{
                         nPonto.setText(dataSnapshot.child(userID).child("nome").getValue().toString());
                         preso.setText(dataSnapshot.child(userID).child("preso").getValue().toString());
-                        medAva.setText(":"+dataSnapshot.child(userID).child("mediaAv").getValue().toString());
+                        MedAv = ":"+dataSnapshot.child(userID).child("mediaAv").getValue().toString();
 
                         if (dataSnapshot.child(userID).child("codAva").getValue().toString() != null){
-                            codAva.setText(dataSnapshot.child(userID).child("codAva").getValue().toString());
+                            CodAv = dataSnapshot.child(userID).child("codAva").getValue().toString();
                         }
 
                         String situacao = dataSnapshot.child(userID).child("aberto").getValue().toString();
 
                         latAtual = dataSnapshot.child(userID).child("latiT").getValue().toString();
                         longAtual =  dataSnapshot.child(userID).child("longT").getValue().toString();
-                        medAva.setText(dataSnapshot.child(userID).child("mediaAv").getValue().toString());
+
                         TotalDeAv = dataSnapshot.child(userID).child("totalAv").getValue().toString();
                         SomaTdeAv = dataSnapshot.child(userID).child("somaAv").getValue().toString();
 
@@ -313,7 +313,7 @@ public class Dados extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.exists()){
-                    medAva.setText(dataSnapshot.getValue().toString());
+                   MedAv = dataSnapshot.getValue().toString();
                 }
 
             }

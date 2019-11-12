@@ -54,7 +54,7 @@
 
     <EditText
         android:id="@+id/editNponto"
-        android:layout_width="284dp"
+        android:layout_width="wrap_content"
         android:layout_height="47dp"
         android:background="@drawable/caixatext"
         android:ems="10"
@@ -67,7 +67,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.561" />
+        app:layout_constraintVertical_bias="0.095" />
 
     <EditText
         android:id="@+id/editPreso"
@@ -80,9 +80,10 @@
         android:inputType="number|phone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.55"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.409" />
+        app:layout_constraintVertical_bias="0.545" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -91,67 +92,12 @@
         android:layout_marginStart="141dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="142dp"
-        android:layout_marginBottom="492dp"
         android:background="@drawable/caixatext"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/codAvaView"
-        android:layout_width="220dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/texts"
-        android:hint="Em breve"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/btSalvar"
-        app:layout_constraintEnd_toEndOf="@+id/abertoBox"
-        app:layout_constraintStart_toStartOf="@+id/abertoBox"
-        app:layout_constraintTop_toBottomOf="@+id/abertoBox"
-        app:layout_constraintVertical_bias="0.348" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Codigo De Avaliação"
-        android:textColor="#FFFFFF"
-        android:textSize="26sp"
-        app:layout_constraintBottom_toTopOf="@+id/codAvaView"
-        app:layout_constraintEnd_toEndOf="@+id/codAvaView"
-        app:layout_constraintStart_toStartOf="@+id/codAvaView"
-        app:layout_constraintTop_toBottomOf="@+id/abertoBox"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Informe esse codigo ao seus clientes para que eles possam avaliar seu ponto de venda no aplicativo."
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/btSalvar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/codAvaView"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/txtMedAv"
-        android:layout_width="89dp"
-        android:layout_height="40dp"
-        android:drawableLeft="@drawable/star"
-        android:textSize="40sp"
-        app:layout_constraintBottom_toTopOf="@+id/editNponto"
-        app:layout_constraintEnd_toEndOf="@+id/editPreso"
-        app:layout_constraintHorizontal_bias="0.524"
-        app:layout_constraintStart_toStartOf="@+id/editPreso"
-        app:layout_constraintTop_toBottomOf="@+id/editPreso" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.147" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
