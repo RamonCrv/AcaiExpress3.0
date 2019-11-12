@@ -50,12 +50,12 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.669" />
+        app:layout_constraintVertical_bias="0.666" />
 
     <EditText
         android:id="@+id/editNponto"
-        android:layout_width="wrap_content"
-        android:layout_height="47dp"
+        android:layout_width="399dp"
+        android:layout_height="58dp"
         android:ems="10"
         android:gravity="center"
         android:hint="Nome do seu local"
@@ -63,26 +63,26 @@
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.095" />
+        app:layout_constraintVertical_bias="0.08" />
 
     <EditText
         android:id="@+id/editPreso"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
+        android:layout_width="100dp"
+        android:layout_height="47dp"
         android:background="@drawable/texts"
         android:drawableLeft="@drawable/preso"
         android:ems="10"
         android:hint="Preço = R$ 0,00"
         android:inputType="number|phone"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.545" />
+        app:layout_constraintVertical_bias="0.572" />
 
     <ImageView
         android:id="@+id/imageView"

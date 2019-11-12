@@ -96,7 +96,7 @@
 
     <TextView
         android:id="@+id/txtMedAv"
-        android:layout_width="103dp"
+        android:layout_width="131dp"
         android:layout_height="49dp"
         android:layout_marginBottom="92dp"
         android:drawableLeft="@drawable/star"
