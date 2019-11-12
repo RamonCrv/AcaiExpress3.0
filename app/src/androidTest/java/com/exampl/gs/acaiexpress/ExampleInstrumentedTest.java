@@ -1,4 +1,4 @@
-package com.example.gs.acaiexpress;
+package com.exampl.gs.acaiexpress;
 
 import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.example.gs.acaiexpress", appContext.getPackageName());
+        assertEquals("com.exampl.gs.acaiexpress", appContext.getPackageName());
     }
 }

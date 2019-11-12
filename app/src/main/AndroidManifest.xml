@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.gs.acaiexpress">
+    package="com.exampl.gs.acaiexpress">
 
     <uses-feature android:name="android.hardware.location.gps" />
 
@@ -18,21 +18,21 @@
         android:hardwareAccelerated="false"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name="com.example.gs.acaiexpress.ReseteSenha"
+        <activity android:name="com.exampl.gs.acaiexpress.ReseteSenha"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.example.gs.acaiexpress.ui.main.ActivityLocation"
+        <activity android:name="com.exampl.gs.acaiexpress.ui.main.ActivityLocation"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.example.gs.acaiexpress.Cadastro"
+        <activity android:name="com.exampl.gs.acaiexpress.Cadastro"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.example.gs.acaiexpress.ui.main.Dados2"
+        <activity android:name="com.exampl.gs.acaiexpress.ui.main.Dados2"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.example.gs.acaiexpress.MainActivity"
+        <activity android:name="com.exampl.gs.acaiexpress.MainActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.example.gs.acaiexpress.Um"
+        <activity android:name="com.exampl.gs.acaiexpress.Um"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.example.gs.acaiexpress.ui.main.Dados"
+        <activity android:name="com.exampl.gs.acaiexpress.ui.main.Dados"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.example.gs.acaiexpress.tela1"
+        <activity android:name="com.exampl.gs.acaiexpress.tela1"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

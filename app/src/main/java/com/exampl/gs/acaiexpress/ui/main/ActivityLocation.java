@@ -1,4 +1,4 @@
-package com.example.gs.acaiexpress.ui.main;
+package com.exampl.gs.acaiexpress.ui.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -15,11 +15,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.example.gs.acaiexpress.R;
+import com.exampl.gs.acaiexpress.R;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.PriorityQueue;
 
 public class ActivityLocation extends AppCompatActivity {
     private TextView textLatitude;

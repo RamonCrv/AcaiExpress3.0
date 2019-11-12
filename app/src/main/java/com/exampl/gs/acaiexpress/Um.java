@@ -1,5 +1,4 @@
-package com.example.gs.acaiexpress;
-import android.content.Intent;
+package com.exampl.gs.acaiexpress;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -8,9 +7,6 @@ import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
-import com.example.gs.acaiexpress.ui.main.Dados;
 
 public class Um extends AppCompatActivity {
     private ProgressBar progressBar;

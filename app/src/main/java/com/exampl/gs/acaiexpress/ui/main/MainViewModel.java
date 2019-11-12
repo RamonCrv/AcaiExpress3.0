@@ -1,4 +1,4 @@
-package com.example.gs.acaiexpress.ui.main;
+package com.exampl.gs.acaiexpress.ui.main;
 
 import androidx.lifecycle.ViewModel;
 

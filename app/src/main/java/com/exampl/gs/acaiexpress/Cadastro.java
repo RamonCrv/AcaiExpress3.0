@@ -1,6 +1,6 @@
-package com.example.gs.acaiexpress;
+package com.exampl.gs.acaiexpress;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -9,7 +9,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.example.gs.acaiexpress.ui.main.MainFragment;
+import com.exampl.gs.acaiexpress.ui.main.MainFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;

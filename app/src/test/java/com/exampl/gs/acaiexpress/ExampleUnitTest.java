@@ -1,4 +1,4 @@
-package com.example.gs.acaiexpress;
+package com.exampl.gs.acaiexpress;
 
 import org.junit.Test;
 

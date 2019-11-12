@@ -2,7 +2,7 @@
 
 buildscript {
     ext {
-        var = 'com.example.gs.acaiexpress'
+        var = 'com.exampl.gs.acaiexpress'
     }
     repositories {
         google()
