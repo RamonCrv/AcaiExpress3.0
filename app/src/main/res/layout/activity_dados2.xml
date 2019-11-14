@@ -85,7 +85,6 @@
         android:layout_width="wrap_content"
         android:layout_height="49dp"
         android:layout_marginBottom="92dp"
-        android:background="@drawable/btn1"
         android:drawableLeft="@drawable/star"
         android:drawableRight="@drawable/sem_nada"
         android:gravity="center"
