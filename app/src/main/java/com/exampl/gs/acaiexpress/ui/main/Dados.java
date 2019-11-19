@@ -17,12 +17,10 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
-import com.exampl.gs.acaiexpress.MainActivity;
 import com.exampl.gs.acaiexpress.Um;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -60,6 +58,7 @@ public class Dados extends AppCompatActivity {
     DatabaseReference databaseDoc;
     DatabaseReference databaseDoc2;
     String url;
+
     private boolean priVezCriado;
     private boolean aberto;
     private String latAtual, longAtual, TotalDeAv, SomaTdeAv, MedAv, CodAv, NomePt;
@@ -134,9 +133,13 @@ public class Dados extends AppCompatActivity {
               if(aberto){
                   bandeiraPt.setBackgroundResource(R.mipmap.bandeiraon2_background);
                   abertoCheck.setText("Aberto!");
+                  abertoCheck.setBackgroundResource(R.drawable.btn2);
               }else {
                   bandeiraPt.setBackgroundResource(R.mipmap.bandeiraoff2_background);
                   abertoCheck.setText("Fechado!");
+                  abertoCheck.setBackgroundResource(R.drawable.btn3);
+
+
               }
             }
         });
