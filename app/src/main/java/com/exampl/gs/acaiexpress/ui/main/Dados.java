@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
+import com.exampl.gs.acaiexpress.MainActivity;
 import com.exampl.gs.acaiexpress.Um;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -48,15 +49,17 @@ public class Dados extends AppCompatActivity {
     public EditText preso;
     private FirebaseUser user;
     private ImageView mImagPhoto;
+    private ImageView bandeiraPt;
     private  FirebaseAuth auth;
     private Uri mUri;
-    private CheckBox abertoCheck;
+    private Button abertoCheck;
     private boolean trocouImagem = false;
     private Button btlocal;
     DatabaseReference databaseDoc;
     DatabaseReference databaseDoc2;
     String url;
     private boolean priVezCriado;
+    private boolean aberto;
     private String latAtual, longAtual, TotalDeAv, SomaTdeAv, MedAv, CodAv, NomePt;
 
     private static final String ALLOWED_CHARACTERS ="0123456789qwertyuiopasdfghjklzxcvbnm";
@@ -76,7 +79,8 @@ public class Dados extends AppCompatActivity {
         BuscarDoc();
         BuscarImg();
         attNotaEmTR();
-        alert(NomePt);
+        click();
+
         if (priVezCriado == false && NomePt != null){
             nPonto.setKeyListener(null);
         }
@@ -88,6 +92,7 @@ public class Dados extends AppCompatActivity {
             public void onClick(View v) {
                 AddDoc();
                 trocouImagem = false;
+
 
             }
         });
@@ -111,14 +116,28 @@ public class Dados extends AppCompatActivity {
         btnSalvar = (Button) findViewById(R.id.btSalvar);
         ediimge = (Button) findViewById(R.id.ediimg);
         mImagPhoto = (ImageView) findViewById(R.id.imageView);
-        abertoCheck = (CheckBox) findViewById(R.id.abertoBox);
+        abertoCheck = (Button) findViewById(R.id.abertoBox);
+        bandeiraPt =  (ImageView) findViewById(R.id.imgbandeira);
 
 
 
     }
 
-
-
+    void click(){
+        abertoCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              aberto = !aberto;
+              if(aberto){
+                  bandeiraPt.setBackgroundResource(R.mipmap.bandeiraon2_background);
+                  abertoCheck.setText("Aberto!");
+              }else {
+                  bandeiraPt.setBackgroundResource(R.mipmap.bandeiraoff2_background);
+                  abertoCheck.setText("Fechado!");
+              }
+            }
+        });
+    }
 
 
     //ACHO Q SALVA  A IMAGEM
@@ -174,10 +193,12 @@ public class Dados extends AppCompatActivity {
 
             }
             ponto.setVerificado("F");
-            if (abertoCheck.isChecked()){
+            if (aberto){
                 ponto.setAberto("Aberto");
+
             }else{
                 ponto.setAberto("Fechado");
+
             }
             user = FirebaseAuth.getInstance().getCurrentUser();
             databaseDoc.child(ponto.getID()).setValue(ponto);
@@ -193,7 +214,7 @@ public class Dados extends AppCompatActivity {
     //SALVA A IMAGEM NO STORAGE COM O ID DO USUARIO
     private void saveUserInFirebase() {
         String userID = auth.getCurrentUser().getUid();
-        final StorageReference ref = FirebaseStorage.getInstance().getReference().child("/images/"+userID);
+        final StorageReference ref = FirebaseStorage.getInstance().getReference().child("/Imagens/Ponto/"+userID);
         ref.putFile(mUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -214,7 +235,7 @@ public class Dados extends AppCompatActivity {
     //FUNÇÃO QUE ACHA A IMAGEM NO STORAGE E EXECUTA O GLIDE
     public void BuscarImg(){
         final String userID = auth.getCurrentUser().getUid();
-        final StorageReference ref = FirebaseStorage.getInstance().getReference().child("/images/").child(userID);
+        final StorageReference ref = FirebaseStorage.getInstance().getReference().child("/Imagens/Ponto/").child(userID);
         ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -261,9 +282,13 @@ public class Dados extends AppCompatActivity {
                         SomaTdeAv = dataSnapshot.child(userID).child("somaAv").getValue().toString();
 
                         if (situacao.equals("Aberto")){
-                            abertoCheck.setChecked(true);
+                            aberto =true;
+
+                            bandeiraPt.setBackgroundResource(R.mipmap.bandeiraon_background);
                         }else{
-                            abertoCheck.setChecked(false);
+                            aberto =false;
+
+                            bandeiraPt.setBackgroundResource(R.mipmap.bandeiraoff_background);
                         }
                     }
                 }else {

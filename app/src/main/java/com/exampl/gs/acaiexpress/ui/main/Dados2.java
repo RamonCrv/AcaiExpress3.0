@@ -129,7 +129,7 @@ public class Dados2 extends AppCompatActivity {
     //FUNÇÃO QUE ACHA A IMAGEM NO STORAGE E EXECUTA O GLIDE
     public void BuscarImg() {
         final String userID = auth.getCurrentUser().getUid();
-        final StorageReference ref = FirebaseStorage.getInstance().getReference().child("/images/").child(userID);
+        final StorageReference ref = FirebaseStorage.getInstance().getReference().child("/Imagens/Ponto/").child(userID);
         ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
