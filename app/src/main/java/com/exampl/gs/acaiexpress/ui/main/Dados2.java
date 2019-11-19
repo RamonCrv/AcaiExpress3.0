@@ -34,6 +34,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.IOException;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 public class Dados2 extends AppCompatActivity {
@@ -46,6 +49,7 @@ public class Dados2 extends AppCompatActivity {
     private ImageView mImagPhoto;
     private FirebaseAuth auth;
     private Uri mUri;
+    private TextView QuantAva;
     private Button sair;
     DatabaseReference databaseDoc;
     DatabaseReference databaseDoc2;
@@ -78,6 +82,7 @@ public class Dados2 extends AppCompatActivity {
       button2.setOnClickListener(new View.OnClickListener() {
             @Override
            public void onClick(View view) {
+
                 Intent i = new Intent(Dados2.this, Dados.class);
                 startActivity(i);
             }
@@ -106,6 +111,7 @@ public class Dados2 extends AppCompatActivity {
         mImagPhoto = (ImageView) findViewById(R.id.imageView);
         codAva = (TextView) findViewById(R.id.codAvaView);
         medAva = (TextView) findViewById(R.id.txtMedAv);
+        QuantAva = (TextView)findViewById(R.id.quantAva);
 
 
     }
@@ -239,7 +245,24 @@ public class Dados2 extends AppCompatActivity {
             }
         });
 
+        databaseDoc5.child("Ponto/" + auth.getCurrentUser().getUid() + "/totalAv").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    QuantAva.setText("Total de Avaliações: "+dataSnapshot.getValue().toString());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
+
+
 
 
 }

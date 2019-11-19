@@ -40,6 +40,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 public class Dados extends AppCompatActivity {
@@ -91,6 +93,7 @@ public class Dados extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AddDoc();
+                SalvarData();
                 trocouImagem = false;
 
 
@@ -381,10 +384,21 @@ public class Dados extends AppCompatActivity {
             }
         });
 
+    }
 
 
+    void SalvarData(){
 
+        DatabaseReference databaseDoc3;
+        databaseDoc3 = FirebaseDatabase.getInstance().getReference();
+        databaseDoc3.child("Ponto/"+auth.getCurrentUser().getUid()+"/data").setValue(Printdate());
+    }
 
+    String Printdate(){
+        Date today = new Date();
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy - hh:mm a");
+        String dateToStr = format.format(today);
+        return "Ultima vez atualizado em : "+dateToStr;
     }
 
 
