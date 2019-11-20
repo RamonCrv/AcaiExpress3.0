@@ -61,7 +61,7 @@ public class Dados extends AppCompatActivity {
 
     private boolean priVezCriado;
     private boolean aberto;
-    private String latAtual, longAtual, TotalDeAv, SomaTdeAv, MedAv, CodAv, NomePt;
+    private String latAtual, longAtual, TotalDeAv, SomaTdeAv, MedAv, CodAv, NomePt,nNota,Data;
 
     private static final String ALLOWED_CHARACTERS ="0123456789qwertyuiopasdfghjklzxcvbnm";
     @Override
@@ -208,6 +208,7 @@ public class Dados extends AppCompatActivity {
             }
             user = FirebaseAuth.getInstance().getCurrentUser();
             databaseDoc.child(ponto.getID()).setValue(ponto);
+            FirebaseDatabase.getInstance().getReference().child("Ponto/"+user.getUid()+"/nNota").setValue(nNota);
             if (trocouImagem){
                 saveUserInFirebase();
                 alert("Trocou imagem = true");
@@ -274,6 +275,10 @@ public class Dados extends AppCompatActivity {
                         NomePt =dataSnapshot.child(userID).child("nome").getValue().toString();
                         preso.setText(dataSnapshot.child(userID).child("preso").getValue().toString());
                         MedAv = dataSnapshot.child(userID).child("mediaAv").getValue().toString();
+                        Data = dataSnapshot.child(userID).child("data").getValue().toString();
+                        if (dataSnapshot.child(userID).child("nNota").getValue().toString() != null){
+                            nNota = dataSnapshot.child(userID).child("nNota").getValue().toString();
+                        }
 
                         if (dataSnapshot.child(userID).child("codAva").getValue().toString() != null){
                             CodAv = dataSnapshot.child(userID).child("codAva").getValue().toString();
@@ -401,7 +406,7 @@ public class Dados extends AppCompatActivity {
         Date today = new Date();
         SimpleDateFormat format = new SimpleDateFormat("dd/MM/yy - hh:mm a");
         String dateToStr = format.format(today);
-        return "Ultima vez atualizado em : "+dateToStr;
+        return "atualizado em : "+dateToStr;
     }
 
 

@@ -8,6 +8,37 @@
     tools:context=".ui.main.Dados2">
 
     <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:text="Nota de Higiene"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtAV"
+        app:layout_constraintEnd_toEndOf="@+id/textView2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/txtAV"
+        android:layout_width="wrap_content"
+        android:layout_height="49dp"
+        android:drawableLeft="@drawable/starblue"
+        android:drawableRight="@drawable/sem_nada"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:textColorLink="#00FF0000"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtMedAv"
+        app:layout_constraintEnd_toStartOf="@+id/txtMedAv"
+        app:layout_constraintHorizontal_bias="0.152"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/txtMedAv"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
         android:id="@+id/editNponto"
         android:layout_width="0dp"
         android:layout_height="47dp"
@@ -15,6 +46,8 @@
         android:gravity="center"
         android:hint="Nome do seu local"
         android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        android:textColorHint="#FFFFFF"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,13 +76,14 @@
         android:id="@+id/codAvaView"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginTop="308dp"
+        android:layout_marginTop="160dp"
         android:background="@drawable/texts"
         android:hint="Em breve"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="30dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -84,19 +118,48 @@
         android:id="@+id/txtMedAv"
         android:layout_width="wrap_content"
         android:layout_height="49dp"
-        android:layout_marginBottom="92dp"
+        android:layout_marginBottom="68dp"
         android:drawableLeft="@drawable/star"
         android:drawableRight="@drawable/sem_nada"
         android:gravity="center"
         android:textColor="#FFFFFF"
         android:textColorLink="#00FF0000"
-        android:textSize="40sp"
+        android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/codAvaView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.867"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.203" />
+        app:layout_constraintVertical_bias="0.744" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nota Usuarios"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/txtMedAv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/quantAva"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.87"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtMedAv"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/button"
@@ -126,20 +189,11 @@
         android:text="Sair da conta"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/codAvaView"
-        app:layout_constraintVertical_bias="0.457" />
-
-    <TextView
-        android:id="@+id/quantAva"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/txtMedAv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.045"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
         app:layout_constraintVertical_bias="1.0" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
