@@ -19,21 +19,21 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name="com.exampl.gs.acaiexpress.ReseteSenha"
-            android:screenOrientation="portrait"/>
+            />
         <activity android:name="com.exampl.gs.acaiexpress.ui.main.ActivityLocation"
-            android:screenOrientation="portrait"/>
+            />
         <activity android:name="com.exampl.gs.acaiexpress.Cadastro"
-            android:screenOrientation="portrait"/>
+            />
         <activity android:name="com.exampl.gs.acaiexpress.ui.main.Dados2"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.exampl.gs.acaiexpress.MainActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.exampl.gs.acaiexpress.Um"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.exampl.gs.acaiexpress.ui.main.Dados"
-            android:screenOrientation="portrait"/>
+            />
         <activity android:name="com.exampl.gs.acaiexpress.tela1"
-            android:screenOrientation="portrait">
+            />
+        <activity android:name="com.exampl.gs.acaiexpress.Um"
+            />
+        <activity android:name="com.exampl.gs.acaiexpress.ui.main.Dados"
+            />
+        <activity android:name="com.exampl.gs.acaiexpress.MainActivity"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

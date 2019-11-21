@@ -69,8 +69,6 @@ public class Dados extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dados);
-        Intent b = new Intent(this, Um.class);
-        startActivity(b);
         pedirPermissao();
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         databaseDoc = FirebaseDatabase.getInstance().getReference("Ponto");
@@ -202,6 +200,7 @@ public class Dados extends AppCompatActivity {
             if (aberto){
                 ponto.setAberto("Aberto");
 
+
             }else{
                 ponto.setAberto("Fechado");
 
@@ -294,12 +293,12 @@ public class Dados extends AppCompatActivity {
 
                         if (situacao.equals("Aberto")){
                             aberto =true;
-
-                            bandeiraPt.setBackgroundResource(R.mipmap.bandeiraon_background);
+                            abertoCheck.setText("Aberto!");
+                            bandeiraPt.setBackgroundResource(R.mipmap.bandeiraon2_background);
                         }else{
                             aberto =false;
-
-                            bandeiraPt.setBackgroundResource(R.mipmap.bandeiraoff_background);
+                            abertoCheck.setText("Fechado!");
+                            bandeiraPt.setBackgroundResource(R.mipmap.bandeiraoff2_background);
                         }
                     }
                 }else {

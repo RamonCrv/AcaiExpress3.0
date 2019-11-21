@@ -13,6 +13,11 @@
     <string name="not_revoke">nao se pode revocar aceso</string>
     <string name="sair"> Sair da conta</string>
 
+    <string name="salvea">Salvar e Atualizar</string>
+    <string name="textpreco"> Preço = R$ 0,00</string>
+    <string name="aberto">Aberto</string>
+    <string name="edit">Editar</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
