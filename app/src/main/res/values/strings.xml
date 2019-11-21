@@ -3,7 +3,15 @@
     <string name="title_activity_mapa">Map</string>
     <string name="not_log_in">não pode iniciar</string>
     <string name="not_close_session">so lamneto</string>
+    <string name="text_nonelocal">Nome do seu local</string>
+    <string name="testnota">Nota de Higiene:</string>
+    <string name="textavuser">Avaliação de Usuarios:</string>
+    <string name="textembreve">Em Breve</string>
+    <string name="textcodi">Seu Codigo De Avaliação</string>
+    <string name="textG">Informe esse codigo ao seus clientes para que eles possam avaliar seu ponto de venda no aplicativo.</string>
+    <string name="texteditei">Editar Informações</string>
     <string name="not_revoke">nao se pode revocar aceso</string>
+    <string name="sair"> Sair da conta</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

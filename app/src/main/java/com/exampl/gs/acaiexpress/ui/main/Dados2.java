@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
@@ -45,6 +46,7 @@ public class Dados2 extends AppCompatActivity {
     private Button button2;
     private TextView codAva;
     private TextView medAva;
+
     private FirebaseUser user;
     private ImageView mImagPhoto;
     private FirebaseAuth auth;
@@ -54,18 +56,18 @@ public class Dados2 extends AppCompatActivity {
     DatabaseReference databaseDoc;
     DatabaseReference databaseDoc2;
     String url;
+
     private TextView nNotas;
     private boolean priVezCriado;
     private String latAtual, longAtual;
     private static final String ALLOWED_CHARACTERS = "0123456789qwertyuiopasdfghjklzxcvbnm";
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dados2);
-        Intent b = new Intent(Dados2.this, Um.class);
-        startActivity(b);
         pedirPermissao();
         databaseDoc = FirebaseDatabase.getInstance().getReference("Ponto");
         inicializarComponentes();
@@ -74,6 +76,7 @@ public class Dados2 extends AppCompatActivity {
         BuscarDoc();
         BuscarImg();
         attNotaEmTR();
+
     }
 
     //AÇÕES DO BOTÕES
@@ -115,7 +118,6 @@ public class Dados2 extends AppCompatActivity {
         QuantAva = (TextView)findViewById(R.id.quantAva);
         nNotas = (TextView)findViewById(R.id.txtAV);
 
-
     }
 
     //ACHO Q SALVA  A IMAGEM
@@ -132,7 +134,6 @@ public class Dados2 extends AppCompatActivity {
             }
         }
     }
-
 
     //FUNÇÃO QUE ACHA A IMAGEM NO STORAGE E EXECUTA O GLIDE
     public void BuscarImg() {
@@ -155,6 +156,7 @@ public class Dados2 extends AppCompatActivity {
 
     //RESGATA  DOCUMENTO NO DOC
     public void BuscarDoc() {
+
         databaseDoc2 = FirebaseDatabase.getInstance().getReference();
         final String userID = auth.getCurrentUser().getUid();
         databaseDoc2.child("Ponto").orderByChild("id").equalTo(userID).addListenerForSingleValueEvent(new ValueEventListener() {
