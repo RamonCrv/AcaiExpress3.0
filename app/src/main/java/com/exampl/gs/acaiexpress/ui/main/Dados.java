@@ -11,6 +11,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
@@ -21,7 +22,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
-import com.exampl.gs.acaiexpress.Um;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -92,6 +92,7 @@ public class Dados extends AppCompatActivity {
                 AddDoc();
                 SalvarData();
                 trocouImagem = false;
+                tempo();
 
 
             }
@@ -101,13 +102,24 @@ public class Dados extends AppCompatActivity {
             public void onClick(View v) {
                 trocouImagem = true;
                 selectfoto();
+
             }
         });
 
-
-
-
     }
+    public void tempo(){
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                Intent i = new Intent(Dados.this, Dados2.class);
+                startActivity(i);
+                finish();
+            }
+        },3000);
+    }
+
+
     //INICIA COMPONENTES
     private void inicializarComponentes() {
         FirebaseApp.initializeApp(Dados.this);
@@ -210,9 +222,10 @@ public class Dados extends AppCompatActivity {
             FirebaseDatabase.getInstance().getReference().child("Ponto/"+user.getUid()+"/nNota").setValue(nNota);
             if (trocouImagem){
                 saveUserInFirebase();
-                alert("Trocou imagem = true");
+                alert("Trocando Imagem...");
             }
            alert("Salvo com sucesso");
+
         }else{
             alert("Erro");
         }

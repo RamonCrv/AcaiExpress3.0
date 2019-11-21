@@ -20,15 +20,9 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name="com.exampl.gs.acaiexpress.ReseteSenha"
             />
-        <activity android:name="com.exampl.gs.acaiexpress.ui.main.ActivityLocation"
-            />
         <activity android:name="com.exampl.gs.acaiexpress.Cadastro"
             />
         <activity android:name="com.exampl.gs.acaiexpress.ui.main.Dados2"
-            />
-        <activity android:name="com.exampl.gs.acaiexpress.tela1"
-            />
-        <activity android:name="com.exampl.gs.acaiexpress.Um"
             />
         <activity android:name="com.exampl.gs.acaiexpress.ui.main.Dados"
             />
