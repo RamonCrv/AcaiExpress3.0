@@ -15,6 +15,17 @@
         android:textColor="#FFFFFF"
         android:background="@color/color4"
         app:layout_constraintVertical_bias="1.0" />
+    <TextView
+        android:id="@+id/PontNomeXML"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/color4"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="Editar Inforações"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        android:textStyle="bold" />
     <View
         android:id="@+id/divider1"
         android:layout_width="match_parent"
@@ -41,10 +52,12 @@
 
             <Button
                 android:id="@+id/ediimg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="300dp"
+                android:layout_width="85dp"
+                android:layout_height="35dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="20dp"
                 android:layout_marginTop="-50dp"
+                android:backgroundTint="@color/color4"
                 android:background="@drawable/btntras"
                 android:drawableStart="@drawable/ic_action_edite"
                 android:text="@string/edit"
@@ -56,14 +69,23 @@
             <View
                 android:id="@+id/divider"
                 android:layout_width="match_parent"
+                android:layout_marginTop="15dp"
                 android:layout_height="5dp"
                 android:background="?android:attr/listDivider" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:text="Nome:"
+                android:textSize="28sp">
+            </TextView>
 
             <EditText
                 android:id="@+id/editNponto"
-                android:layout_width="match_parent"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:layout_gravity="center"
                 android:gravity="center"
                 android:hint="@string/text_nonelocal"
                 android:inputType="textPersonName"
@@ -76,18 +98,37 @@
                 android:layout_height="3dp"
                 android:background="?android:attr/listDivider" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:text="Preço:">
+            </TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="135dp"
+                android:text="R$:"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="-60dp">
+
+            </TextView>
+
             <EditText
                 android:id="@+id/editPreso"
-                android:layout_width="130dp"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/texts"
-                android:drawableStart="@drawable/preso"
                 android:ems="10"
                 android:hint="@string/textpreco"
-                android:inputType="number|phone"
+                android:inputType="number"
                 android:textSize="36sp"
                 app:layout_constraintVertical_bias="0.575" />
 
@@ -102,7 +143,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="30dp"
                 android:background="@color/color_error"
                 android:text="@string/aberto"
                 app:layout_constraintVertical_bias="0.848" />
@@ -112,26 +153,21 @@
                 android:id="@+id/imgbandeira"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="230dp"
+                android:layout_marginStart="210dp"
                 android:layout_marginTop="-90dp"
                 tools:srcCompat="@tools:sample/avatars" />
-
-            <View
-                android:id="@+id/divider4"
-                android:layout_width="match_parent"
-                android:layout_height="3dp"
-                android:background="?android:attr/listDivider" />
 
             <Button
                 android:id="@+id/btSalvar"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="150dp"
+                android:layout_marginTop="110dp"
                 android:background="@drawable/btn1"
                 android:text="@string/salvea"
                 android:textAllCaps="false"
-                android:textColor="#66f9B0"
+                android:backgroundTint="@color/color4"
+                android:textColor="#FFFFFF"
                 app:layout_constraintVertical_bias="0.943" />
             <TextView
                 android:layout_width="wrap_content"
