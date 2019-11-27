@@ -101,6 +101,9 @@
                 android:layout_height="wrap_content"
                 android:text="@string/textavuser"
                 android:layout_marginBottom="5dp"
+                android:layout_marginTop="-20dp"
+                android:gravity="center"
+                android:layout_gravity="center"
                 android:layout_marginStart="120dp"
                 android:textColor="#000000"
                 android:textSize="20sp"
@@ -141,14 +144,12 @@
 
 
 
-
-
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="290dp"
+            android:layout_marginTop="50dp"
             android:text="@string/textcodi"
             android:textColor="#000000"
             android:textSize="26sp"
@@ -163,8 +164,9 @@
             android:background="@drawable/texts"
             android:hint="@string/textembreve"
             android:textAlignment="center"
-            android:textColor="#000000"
-            android:textColorHint="#000000"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="@color/color4"
+            android:textColorHint="#FFFFFF"
             android:textSize="30sp" />
 
 
@@ -174,6 +176,7 @@
             android:layout_height="wrap_content"
             android:text="@string/textG"
             android:textAlignment="center"
+            android:layout_marginBottom="50dp"
             android:textColor="#000000"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -189,10 +192,11 @@
             android:layout_gravity="center_horizontal"
             android:background="@drawable/texts"
             android:layout_marginTop="20dp"
+            android:backgroundTint="@color/color4"
             android:drawableStart="@drawable/ic_action_edite"
             android:drawableEnd="@drawable/sem_nada"
             android:text="@string/texteditei"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             app:layout_constraintVertical_bias="0.52" />
 
         <Button
@@ -200,13 +204,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:backgroundTint="@color/color4"
             android:layout_marginTop="100dp"
             android:background="@drawable/texts"
             android:drawableStart="@drawable/sem_nada"
             android:drawableEnd="@drawable/sem_nada"
             android:text="@string/sair"
-
-            android:textColor="#550101"
+            android:textColor="#FFFFFF"
             app:layout_constraintVertical_bias="1.0" />
         <TextView
             android:layout_width="wrap_content"

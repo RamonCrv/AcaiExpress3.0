@@ -162,7 +162,7 @@
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="110dp"
+                android:layout_marginTop="50dp"
                 android:background="@drawable/btn1"
                 android:text="@string/salvea"
                 android:textAllCaps="false"
