@@ -15,17 +15,27 @@
         android:textColor="#FFFFFF"
         android:background="@color/color4"
         app:layout_constraintVertical_bias="1.0" />
+
     <TextView
         android:id="@+id/PontNomeXML"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         android:background="@color/color4"
         android:layout_gravity="center"
+        android:autoSizeTextType="uniform"
         android:gravity="center"
         android:text="Editar Inforações"
         android:textColor="#FFFFFF"
         android:textSize="36sp"
         android:textStyle="bold" />
+    <Button
+        android:id="@+id/btnVoltar"
+        android:layout_width="50dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="-40dp"
+        android:background="@drawable/voltar_foreground">
+
+    </Button>
     <View
         android:id="@+id/divider1"
         android:layout_width="match_parent"
@@ -44,7 +54,7 @@
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
-                android:layout_height="274dp"
+                android:layout_height="288dp"
                 android:layout_gravity="center"
                 android:background="@mipmap/sem_imagem"
                 android:scaleType="fitXY"
@@ -84,6 +94,7 @@
                 android:id="@+id/editNponto"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
+                android:autoSizeTextType="uniform"
                 android:ems="10"
                 android:layout_gravity="center"
                 android:gravity="center"
