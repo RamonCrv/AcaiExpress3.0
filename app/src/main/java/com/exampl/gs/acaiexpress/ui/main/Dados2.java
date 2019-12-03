@@ -181,7 +181,7 @@ public class Dados2 extends AppCompatActivity {
                             nNotas.setBackgroundResource(R.mipmap.naopossui_background);
 
                         }else{
-                            nNotas.setBackgroundResource(R.mipmap.voltar_background);
+                            nNotas.setBackgroundResource(R.mipmap.selo_background);
                         }
                         if (situacao.equals("Aberto")) {
 
