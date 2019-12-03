@@ -22,6 +22,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
+import com.exampl.gs.acaiexpress.MainActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -45,6 +46,7 @@ import java.util.Random;
 public class Dados extends AppCompatActivity {
     private Button btnSalvar;
     private Button ediimge;
+    private Button voltar;
     public EditText nPonto;
     public EditText preso;
     private FirebaseUser user;
@@ -61,7 +63,7 @@ public class Dados extends AppCompatActivity {
 
     private boolean priVezCriado;
     private boolean aberto;
-    private String latAtual, longAtual, TotalDeAv, SomaTdeAv, MedAv, CodAv, NomePt,nNota,Data;
+    private String latAtual, longAtual, TotalDeAv, SomaTdeAv, MedAv, CodAv, NomePt,nNota,Data, verificado;
 
     private static final String ALLOWED_CHARACTERS ="0123456789qwertyuiopasdfghjklzxcvbnm";
     @Override
@@ -130,6 +132,7 @@ public class Dados extends AppCompatActivity {
         mImagPhoto = (ImageView) findViewById(R.id.imageView);
         abertoCheck = (Button) findViewById(R.id.abertoBox);
         bandeiraPt =  (ImageView) findViewById(R.id.imgbandeira);
+        voltar =  (Button) findViewById(R.id.btnVoltar);
 
 
 
@@ -153,6 +156,17 @@ public class Dados extends AppCompatActivity {
               }
             }
         });
+
+        voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Dados.this, Dados2.class);
+                startActivity(i);
+                finish();
+            }
+        });
+
+
     }
 
 
@@ -160,15 +174,18 @@ public class Dados extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 0){
-            mUri = data.getData();
-            Bitmap bitmap = null;
-            try {
-                bitmap =  MediaStore.Images.Media.getBitmap(getContentResolver(),mUri);
-                mImagPhoto.setImageDrawable(new BitmapDrawable(bitmap));
-            } catch (IOException e) {
+        if (data != null){
+            if (requestCode == 0){
+                mUri = data.getData();
+                Bitmap bitmap = null;
+                try {
+                    bitmap =  MediaStore.Images.Media.getBitmap(getContentResolver(),mUri);
+                    mImagPhoto.setImageDrawable(new BitmapDrawable(bitmap));
+                } catch (IOException e) {
+                }
             }
         }
+
     }
     //ESCOLHER FOTO NO CELULAR
     private void selectfoto(){
@@ -196,6 +213,7 @@ public class Dados extends AppCompatActivity {
                 ponto.setSomaAv("0");
                 ponto.setMediaAv("0");
                 ponto.setCodAva(getRandomString(6));
+                ponto.setVerificado("F");
 
             }else{
 
@@ -205,10 +223,10 @@ public class Dados extends AppCompatActivity {
                 ponto.setCodAva(CodAv);
                 ponto.setSomaAv(SomaTdeAv);
                 ponto.setTotalAv(TotalDeAv);
-
+                ponto.setVerificado(verificado);
 
             }
-            ponto.setVerificado("F");
+
             if (aberto){
                 ponto.setAberto("Aberto");
 
@@ -303,6 +321,9 @@ public class Dados extends AppCompatActivity {
 
                         TotalDeAv = dataSnapshot.child(userID).child("totalAv").getValue().toString();
                         SomaTdeAv = dataSnapshot.child(userID).child("somaAv").getValue().toString();
+                        verificado = dataSnapshot.child(userID).child("verificado").getValue().toString();
+
+
 
                         if (situacao.equals("Aberto")){
                             aberto =true;

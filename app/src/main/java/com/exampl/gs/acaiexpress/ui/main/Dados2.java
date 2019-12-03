@@ -53,7 +53,7 @@ public class Dados2 extends AppCompatActivity {
     DatabaseReference databaseDoc2;
     String url;
 
-    private TextView nNotas;
+    private ImageView nNotas;
     private boolean priVezCriado;
     private String latAtual, longAtual;
     private static final String ALLOWED_CHARACTERS = "0123456789qwertyuiopasdfghjklzxcvbnm";
@@ -112,7 +112,7 @@ public class Dados2 extends AppCompatActivity {
         codAva = (TextView) findViewById(R.id.codAvaView);
         medAva = (TextView) findViewById(R.id.txtMedAv);
         QuantAva = (TextView)findViewById(R.id.quantAva);
-        nNotas = (TextView)findViewById(R.id.txtAV);
+        nNotas = (ImageView)findViewById(R.id.txtAV);
 
     }
 
@@ -177,6 +177,12 @@ public class Dados2 extends AppCompatActivity {
                         latAtual = dataSnapshot.child(userID).child("latiT").getValue().toString();
                         longAtual = dataSnapshot.child(userID).child("longT").getValue().toString();
                         medAva.setText(dataSnapshot.child(userID).child("mediaAv").getValue().toString());
+                        if(dataSnapshot.child(userID).child("verificado").getValue().toString().equals("F")){
+                            nNotas.setBackgroundResource(R.mipmap.naopossui_background);
+
+                        }else{
+                            nNotas.setBackgroundResource(R.mipmap.voltar_background);
+                        }
                         if (situacao.equals("Aberto")) {
 
                         } else {
@@ -260,20 +266,7 @@ public class Dados2 extends AppCompatActivity {
             }
         });
 
-        databaseDoc5.child("Ponto/" + auth.getCurrentUser().getUid() + "/nNota").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    nNotas.setText(dataSnapshot.getValue().toString());
-                }
 
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
 
     }
 
