@@ -60,6 +60,7 @@ public class Dados extends AppCompatActivity {
     DatabaseReference databaseDoc;
     DatabaseReference databaseDoc2;
     String url;
+    boolean escolheuImg;
 
     private boolean priVezCriado;
     private boolean aberto;
@@ -82,7 +83,7 @@ public class Dados extends AppCompatActivity {
         attNotaEmTR();
         click();
 
-        if (priVezCriado == false && NomePt != null){
+        if (priVezCriado == false){
             nPonto.setKeyListener(null);
         }
     }
@@ -91,10 +92,22 @@ public class Dados extends AppCompatActivity {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddDoc();
-                SalvarData();
-                trocouImagem = false;
-                tempo();
+                if (priVezCriado && trocouImagem == false ){
+                    alert("É necessario escolher uma foto para salvar");
+                }else{
+                    if (preso.getText().toString().equals("") ||  nPonto.getText().toString().equals("") || preso.getText() == null  || nPonto.getText() == null){
+                        alert("É obrigatorio preencher todos os campos");
+                    }else{
+
+                        AddDoc();
+                        //SalvarData();
+                        trocouImagem = false;
+                        tempo();
+
+                    }
+
+                }
+
 
 
             }
@@ -116,9 +129,11 @@ public class Dados extends AppCompatActivity {
 
                 Intent i = new Intent(Dados.this, Dados2.class);
                 startActivity(i);
+                alert("Salvo");
                 finish();
             }
         },3000);
+
     }
 
 
@@ -184,6 +199,8 @@ public class Dados extends AppCompatActivity {
                 } catch (IOException e) {
                 }
             }
+        }else{
+            trocouImagem = false;
         }
 
     }
@@ -200,7 +217,7 @@ public class Dados extends AppCompatActivity {
 
         String nomePonto = nPonto.getText().toString().trim();
         String preco = preso.getText().toString().trim();
-        if (!TextUtils.isEmpty(nomePonto)||!TextUtils.isEmpty(preco)){
+
             Ponto ponto = new Ponto();
             ponto.setNome(nPonto.getText().toString());
             ponto.setPreso(preso.getText().toString());
@@ -242,11 +259,9 @@ public class Dados extends AppCompatActivity {
                 saveUserInFirebase();
                 alert("Trocando Imagem...");
             }
-           alert("Salvo com sucesso");
+            SalvarData();
+        Toast.makeText(Dados.this, "Salvando..", Toast.LENGTH_LONG).show();
 
-        }else{
-            alert("Erro");
-        }
     }
     //SALVA A IMAGEM NO STORAGE COM O ID DO USUARIO
     private void saveUserInFirebase() {
@@ -306,7 +321,7 @@ public class Dados extends AppCompatActivity {
                         preso.setText(dataSnapshot.child(userID).child("preso").getValue().toString());
                         MedAv = dataSnapshot.child(userID).child("mediaAv").getValue().toString();
                         Data = dataSnapshot.child(userID).child("data").getValue().toString();
-                        if (dataSnapshot.child(userID).child("nNota").getValue().toString() != null){
+                        if (dataSnapshot.child(userID).child("nNota").getValue() != null){
                             nNota = dataSnapshot.child(userID).child("nNota").getValue().toString();
                         }
 
