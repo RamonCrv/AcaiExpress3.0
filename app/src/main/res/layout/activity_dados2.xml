@@ -86,11 +86,11 @@
 
             <ImageView
                 android:id="@+id/txtAV"
-                android:layout_width="130dp"
+                android:layout_width="100dp"
                 android:layout_height="90dp"
                 android:scaleType="fitXY"
-                android:layout_marginStart="-140dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginStart="-150dp"
+                android:layout_marginTop="25dp"
                 android:drawableEnd="@drawable/sem_nada"
                 android:textSize="36sp"
                 />

@@ -84,7 +84,7 @@ public class Dados extends AppCompatActivity {
         click();
 
         if (priVezCriado == false){
-            nPonto.setKeyListener(null);
+            //nPonto.setKeyListener(null);
         }
     }
     //AÇÕES DO BOTÕES
